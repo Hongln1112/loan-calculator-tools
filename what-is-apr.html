@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is APR? — Interest Rate vs APR Explained</title>
+<meta name="description" content="APR is the true annual cost of a loan including fees. Here's how it differs from the interest rate, why it matters, and how to compare loans with it.">
+<link rel="canonical" href="https://loan-calculator-tools.vercel.app/what-is-apr.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%8A%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is APR?",
+  "description": "APR explained: how it differs from the interest rate and how to compare loans.",
+  "publisher": {"@type": "Organization", "name": "Loan Calculator Tools"},
+  "mainEntityOfPage": "https://loan-calculator-tools.vercel.app/what-is-apr.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does APR stand for?",
+      "acceptedAnswer": {"@type": "Answer", "text": "APR stands for annual percentage rate. It's the yearly cost of a loan expressed as a percentage, including both the interest rate and certain fees. It gives you a truer picture of what a loan really costs."}
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between APR and the interest rate?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The interest rate is just the cost of borrowing the principal. APR adds in lender fees and other costs, so it's usually higher. When comparing loans, the APR is the better number to use."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is a lower APR always better?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Usually yes, for similar loans. But watch the fine print — some loans have low APRs with high origination fees, and a shorter-term loan with a slightly higher APR may still cost less overall."}
+    },
+    {
+      "@type": "Question",
+      "name": "Does APR include all fees?",
+      "acceptedAnswer": {"@type": "Answer", "text": "No. APR includes many lender fees but typically excludes some items like title insurance, appraisal, and prepaid interest. Ask your lender which costs are and aren't included."}
+    }
+  ]
+}
+</script>
+<style>
+  :root{--bg:#F7F8FB;--card:#fff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;--good:#2E9E6B;--good-light:#E8F6EF;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:36px 18px 56px;}
+  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
+  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
+  h1{font-size:clamp(27px,4.6vw,36px);font-weight:800;letter-spacing:-.6px;line-height:1.25;margin:12px 0 10px;}
+  .sub{font-size:16px;color:var(--muted);max-width:640px;}
+  .back{display:inline-block;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
+  .related{margin-top:8px;font-size:13px;color:var(--muted);}
+  .related a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .verdict{background:var(--good-light);border:1px solid #CFE3D6;border-left:5px solid var(--good);border-radius:14px;padding:20px 22px;margin-top:24px;}
+  .verdict .v-t{font-size:13px;font-weight:700;color:var(--good);letter-spacing:.5px;text-transform:uppercase;}
+  .verdict .v-big{font-size:21px;font-weight:800;margin:6px 0 4px;color:var(--ink);}
+  .verdict p{font-size:14.5px;color:#3A4757;}
+  .block{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin-top:22px;}
+  .block h2{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:12px;}
+  .block p{font-size:15px;color:#3A4757;margin-bottom:12px;}
+  .block ul{font-size:15px;color:#3A4757;margin:0 0 12px 20px;}
+  .block li{margin-bottom:8px;}
+  table.chart{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px;}
+  table.chart th,table.chart td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top;}
+  table.chart th{background:var(--brand-light);color:var(--brand-dark);font-weight:700;}
+  table.chart tr:nth-child(even) td{background:#FDFDFE;}
+  .callout{background:var(--brand-light);border-left:4px solid var(--brand);padding:14px 16px;border-radius:10px;margin:14px 0;}
+  .callout strong{color:var(--brand-dark);}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{padding:15px 18px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q span{color:var(--brand);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 18px 14px;font-size:14px;color:#3A4757;line-height:1.7;}
+  .more-tools{margin-top:30px;background:var(--brand-light);border-radius:var(--radius);padding:22px 20px;}
+  .more-tools h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+  .more-tools ul{list-style:none;}
+  .more-tools li{margin-bottom:6px;font-size:14px;}
+  .more-tools a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .disclaimer{font-size:12.5px;color:#8A94A2;margin-top:24px;line-height:1.7;}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);}
+  footer a{color:var(--brand-dark);text-decoration:none;}
+  @media (max-width:520px){.block,.verdict{padding:20px 16px;}.wrap{padding:24px 14px 44px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← All loan calculators</a>
+  <header class="top">
+    <div class="brand"><span></span> Loan Calculator Tools</div>
+    <h1>What Is APR?</h1>
+    <p class="sub">The number lenders use to make a loan look cheaper — here's what it really means.</p>
+  </header>
+
+  <div class="related">Related: <a href="what-is-a-good-mortgage-rate.html">What Is a Good Rate</a> · <a href="interest-rate-converter.html">Rate Converter</a></div>
+
+  <div class="verdict">
+    <div class="v-t">In one line</div>
+    <div class="v-big">APR = the true yearly cost of a loan, including interest and fees.</div>
+    <p>The interest rate is just the price of borrowing. APR adds the lender fees on top, so it's the fairer number to compare loans.</p>
+  </div>
+
+  <div class="block">
+    <h2>Interest rate vs APR</h2>
+    <table class="chart">
+      <tr><th></th><th>Interest rate</th><th>APR</th></tr>
+      <tr><td>What it covers</td><td>Just borrowing the principal</td><td>Interest + many lender fees</td></tr>
+      <tr><td>Usually</td><td>Lower</td><td>Higher</td></tr>
+      <tr><td>Best for</td><td>Monthly payment math</td><td>Comparing total loan cost</td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Why APR matters</h2>
+    <div class="callout"><strong>Two loans can advertise the same rate but cost different amounts.</strong> The one with lower fees has a lower APR. That's why lenders are required to show APR — it lets you compare apples to apples.</div>
+    <p>When you see a loan offer, look at the APR, not just the headline rate. A slightly higher rate with much lower fees can be the cheaper loan.</p>
+  </div>
+
+  <div class="block">
+    <h2>What APR doesn't include</h2>
+    <ul>
+      <li><strong>Appraisal fees</strong> and title insurance</li>
+      <li><strong>Prepaid interest</strong> and escrow</li>
+      <li><strong>Some closing costs</strong></li>
+    </ul>
+    <p>Ask your lender for a full breakdown of every fee, so there are no surprises at closing.</p>
+  </div>
+
+  <div class="block">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">What does APR stand for?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">APR stands for annual percentage rate. It's the yearly cost of a loan expressed as a percentage, including both the interest rate and certain fees.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the difference between APR and the interest rate?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">The interest rate is just the cost of borrowing the principal. APR adds in lender fees and other costs, so it's usually higher. When comparing loans, the APR is the better number to use.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is a lower APR always better?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Usually yes, for similar loans. But watch the fine print — some loans have low APRs with high origination fees, and a shorter-term loan with a slightly higher APR may still cost less overall.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does APR include all fees?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">No. APR includes many lender fees but typically excludes some items like title insurance, appraisal, and prepaid interest. Ask your lender which costs are and aren't included.</div></div>
+    </div>
+  </div>
+
+  <div class="more-tools">
+    <h3>You might also need</h3>
+    <ul>
+      <li><a href="what-is-a-good-mortgage-rate.html">What Is a Good Mortgage Rate</a> — benchmarks and how rates work.</li>
+      <li><a href="interest-rate-converter.html">Interest Rate Converter</a> — compare rates correctly.</li>
+      <li><a href="loan-interest-calculator.html">Loan Interest Calculator</a> — total interest on any loan.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2>Sources</h2>
+    <ul style="font-size:13.5px;color:#3A4757;">
+      <li>APR disclosure requirements — Consumer Financial Protection Bureau (CFPB) and Truth in Lending Act guidance.</li>
+      <li>APR vs interest rate and loan fees — CFPB mortgage loan estimate guidance.</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">This is general educational information, not financial advice. APR rules vary by loan type and regulator. Always read the loan estimate and ask your lender about any fee.</div>
+
+  <footer><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling;
+      if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';}
+      else{a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+})();
+</script>
+</body>
+</html>

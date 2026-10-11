@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Much House Can I Afford? (2026 Guide)</title>
+<meta name="description" content="The 28/36 rule, how lenders calculate what you can afford, and the numbers you need to know before shopping for a home.">
+<link rel="canonical" href="https://loan-calculator-tools.vercel.app/how-much-house-can-i-afford.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%A1%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Much House Can I Afford?",
+  "description": "The 28/36 rule and how lenders decide what you can afford.",
+  "publisher": {"@type": "Organization", "name": "Loan Calculator Tools"},
+  "mainEntityOfPage": "https://loan-calculator-tools.vercel.app/how-much-house-can-i-afford.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the 28/36 rule?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The 28/36 rule says your housing payment should stay under about 28% of your gross monthly income, and your total debt payments (including the house) under about 36%. It's a common guideline lenders use to judge affordability."}
+    },
+    {
+      "@type": "Question",
+      "name": "How much house can I afford with a $100k salary?",
+      "acceptedAnswer": {"@type": "Answer", "text": "On $100,000 a year, the 28% guideline suggests a housing payment around $2,333 a month, which typically supports a home price in the $400k–$450k range depending on your rate, down payment, and other debts."}
+    },
+    {
+      "@type": "Question",
+      "name": "What factors do lenders consider?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Lenders look at your income, debt-to-income ratio, credit score, down payment, and current interest rates. A higher credit score and lower debt help you qualify for a larger loan at a better rate."}
+    },
+    {
+      "@type": "Question",
+      "name": "Should I buy more than I'm comfortable with?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Lenders approve loans based on ratios, but only you know your real budget. Leave room for taxes, insurance, maintenance, and emergencies. It's usually wiser to buy below your max approval."}
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#F7F8FB;--card:#ffffff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;
+    --good:#2E9E6B;--good-light:#E8F6EF;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:36px 18px 56px;}
+  header.top{padding:6px 0 22px;}
+  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
+  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
+  h1{font-size:clamp(27px,4.6vw,36px);font-weight:800;letter-spacing:-.6px;line-height:1.25;margin:12px 0 10px;}
+  .sub{font-size:16px;color:var(--muted);max-width:640px;}
+  .back{display:inline-block;margin-top:8px;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
+  .related{margin-top:8px;font-size:13px;color:var(--muted);}
+  .related a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .verdict{background:var(--good-light);border:1px solid #CFE3D6;border-left:5px solid var(--good);border-radius:14px;padding:20px 22px;margin-top:24px;}
+  .verdict .v-t{font-size:13px;font-weight:700;color:var(--good);letter-spacing:.5px;text-transform:uppercase;}
+  .verdict .v-big{font-size:21px;font-weight:800;margin:6px 0 4px;color:var(--ink);}
+  .verdict p{font-size:14.5px;color:#3A4757;}
+  .block{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin-top:22px;}
+  .block h2{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:12px;}
+  .block p{font-size:15px;color:#3A4757;margin-bottom:12px;}
+  .block ul{font-size:15px;color:#3A4757;margin:0 0 12px 20px;}
+  .block li{margin-bottom:8px;}
+  table.chart{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px;}
+  table.chart th,table.chart td{border:1px solid var(--line);padding:10px;text-align:left;}
+  table.chart th{background:var(--brand-light);color:var(--brand-dark);font-weight:700;}
+  table.chart tr:nth-child(even) td{background:#FDFDFE;}
+  .callout{background:var(--brand-light);border-left:4px solid var(--brand);padding:14px 16px;border-radius:10px;margin:14px 0;}
+  .callout strong{color:var(--brand-dark);}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{padding:15px 18px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q span{color:var(--brand);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 18px 14px;font-size:14px;color:#3A4757;line-height:1.7;}
+  .more-tools{margin-top:30px;background:var(--brand-light);border-radius:var(--radius);padding:22px 20px;}
+  .more-tools h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+  .more-tools ul{list-style:none;}
+  .more-tools li{margin-bottom:6px;font-size:14px;}
+  .more-tools a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .disclaimer{font-size:12.5px;color:#8A94A2;margin-top:24px;line-height:1.7;}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);}
+  footer a{color:var(--brand-dark);text-decoration:none;}
+  @media (max-width:520px){.block,.verdict{padding:20px 16px;}.wrap{padding:24px 14px 44px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← All loan calculators</a>
+  <header class="top">
+    <div class="brand"><span></span> Loan Calculator Tools</div>
+    <h1>How Much House Can I Afford?</h1>
+    <p class="sub">Before you fall in love with a listing, know the number that keeps you comfortable — not just what a lender will approve.</p>
+  </header>
+
+  <div class="related">Related: <a href="loan-affordability-calculator.html">How Much Can I Borrow</a> · <a href="mortgage-payment-calculator.html">Mortgage Payment</a></div>
+
+  <div class="verdict">
+    <div class="v-t">The rule of thumb</div>
+    <div class="v-big">Keep housing under ~28% of income, total debt under ~36%.</div>
+    <p>That's the 28/36 guideline most lenders reference. It keeps your monthly payment — including taxes and insurance — from swallowing your budget.</p>
+  </div>
+
+  <div class="block">
+    <h2>The 28/36 rule, explained</h2>
+    <p><strong>28% front-end:</strong> your total housing payment (mortgage, taxes, insurance, HOA) should stay under about 28% of your gross monthly income.</p>
+    <p><strong>36% back-end:</strong> all your debts (housing + car + credit cards + student loans) should stay under about 36% of gross income.</p>
+    <table class="chart">
+      <tr><th>Gross annual income</th><th>~28% monthly housing</th><th>Typical home range*</th></tr>
+      <tr><td>$60,000</td><td>$1,400</td><td>$230k–$260k</td></tr>
+      <tr><td>$80,000</td><td>$1,866</td><td>$310k–$350k</td></tr>
+      <tr><td>$100,000</td><td>$2,333</td><td>$400k–$450k</td></tr>
+      <tr><td>$150,000</td><td>$3,500</td><td>$600k–$680k</td></tr>
+    </table>
+    <p class="small" style="font-size:13px;color:var(--muted);">*Ranges are estimates at ~6.5% rate, 20% down, 30-year term. Your actual numbers depend on your rate, down payment, and other debts.</p>
+  </div>
+
+  <div class="block">
+    <h2>What lenders actually look at</h2>
+    <ul>
+      <li><strong>Income &amp; job stability</strong> — your debt-to-income ratio is the big one.</li>
+      <li><strong>Credit score</strong> — higher scores unlock lower rates.</li>
+      <li><strong>Down payment</strong> — more down = smaller loan, less monthly.</li>
+      <li><strong>Current rates</strong> — they move the number a lot.</li>
+    </ul>
+    <div class="callout"><strong>Get pre-approved first.</strong> Lenders give you a real number based on your actual finances, and pre-approval strengthens your offer when you find a home.</div>
+  </div>
+
+  <div class="block">
+    <h2>Buy below your max</h2>
+    <p>Being approved for a loan doesn't mean you should spend that much. Taxes, insurance, maintenance, and emergencies eat into a budget fast. A common, healthier approach is to buy <strong>well below your maximum approval</strong> so you have breathing room.</p>
+    <p>Use our <a href="loan-affordability-calculator.html">How Much Can I Borrow</a> calculator to see the loan that fits a payment you're genuinely comfortable with.</p>
+  </div>
+
+  <div class="block">
+    <h2>Three buyers, three budgets</h2>
+    <p>Affordability is personal. Here's how the same rules play out for very different buyers — use the numbers that match your situation.</p>
+    <table class="chart">
+      <tr><th></th><th>Single first-time buyer</th><th>Married, no kids</th><th>Investor</th></tr>
+      <tr><td>Household income</td><td>$72,000</td><td>$130,000</td><td>$95,000</td></tr>
+      <tr><td>Other monthly debt</td><td>$420 (car)</td><td>$350 (cards)</td><td>$0</td></tr>
+      <tr><td>28% housing cap</td><td>$1,680/mo</td><td>$3,033/mo</td><td>$2,217/mo</td></tr>
+      <tr><td>36% total debt cap</td><td>≈ $480 remaining</td><td>≈ $550 remaining</td><td>full budget open</td></tr>
+    </table>
+    <p>Notice the pattern: the <strong>back-end 36% rule</strong> is often the tighter limit when you carry car or card debt. The investor with no debt can afford more relative to income.</p>
+  </div>
+
+  <div class="block">
+    <h2>Work through it step by step</h2>
+    <ol style="font-size:15px;color:#3A4757;margin:0 0 12px 20px;line-height:1.8;">
+      <li><strong>Add up your gross monthly income</strong> — before taxes, including salary and steady side income.</li>
+      <li><strong>List your monthly debts</strong> — car, cards, student loans, child support.</li>
+      <li><strong>Estimate your housing payment</strong> — mortgage + taxes + insurance + HOA. Use the <a href="mortgage-payment-calculator.html">Mortgage Payment Calculator</a> to get the mortgage part.</li>
+      <li><strong>Check the two ratios</strong> — housing ≤ 28% of income, total debts ≤ 36%.</li>
+      <li><strong>Back into the price</strong> — enter your comfortable payment in the <a href="loan-affordability-calculator.html">How Much Can I Borrow</a> tool to see the loan size.</li>
+    </ol>
+    <p>Lenders use similar math, but their final number also depends on your credit score and down payment.</p>
+  </div>
+
+  <div class="block">
+    <h2>Common mistakes</h2>
+    <ul>
+      <li><strong>Borrowing up to your max approval.</strong> Approved ≠ comfortable. Taxes, insurance, and maintenance eat into that number fast.</li>
+      <li><strong>Ignoring your other debts.</strong> A car payment you'll keep for 3 more years counts against you now.</li>
+      <li><strong>Forgetting maintenance.</strong> Budget roughly 1% of home value per year for upkeep.</li>
+      <li><strong>Quoting your pre-tax income.</strong> Your take-home is what actually pays the mortgage — leave real breathing room.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">What is the 28/36 rule?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">The 28/36 rule says your housing payment should stay under about 28% of your gross monthly income, and total debt payments under about 36%. It's a common guideline lenders use.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How much house can I afford with a $100k salary?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">On $100,000 a year, the 28% guideline suggests a housing payment around $2,333 a month, which typically supports a home price in the $400k–$450k range depending on your rate, down payment, and other debts.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What factors do lenders consider?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Lenders look at your income, debt-to-income ratio, credit score, down payment, and current interest rates. A higher credit score and lower debt help you qualify for a larger loan at a better rate.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Should I buy more than I'm comfortable with?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Lenders approve loans based on ratios, but only you know your real budget. Leave room for taxes, insurance, maintenance, and emergencies. It's usually wiser to buy below your max approval.</div></div>
+    </div>
+  </div>
+
+  <div class="more-tools">
+    <h3>You might also need</h3>
+    <ul>
+      <li><a href="loan-affordability-calculator.html">How Much Can I Borrow</a> — work backward from a monthly payment.</li>
+      <li><a href="mortgage-payment-calculator.html">Mortgage Payment Calculator</a> — see your exact monthly cost.</li>
+      <li><a href="mortgage-vs-rent-calculator.html">Mortgage vs Rent</a> — should you buy at all?</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2>Sources</h2>
+    <ul style="font-size:13.5px;color:#3A4757;">
+      <li>28/36 affordability guideline — Consumer Financial Protection Bureau (CFPB) homeownership guidance.</li>
+      <li>Mortgage concepts, down-payment and loan programs — U.S. Department of Housing and Urban Development (HUD).</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">This is general guidance based on common lending standards and is not financial advice. Rates, programs, and your personal situation vary. Consult a lender and qualified professional for your specific numbers.</div>
+
+  <footer><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling;
+      if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';}
+      else{a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+})();
+</script>
+</body>
+</html>

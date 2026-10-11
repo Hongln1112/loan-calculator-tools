@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15-Year vs 30-Year Mortgage — Side by Side</title>
+<meta name="description" content="Compare a 15-year and 30-year mortgage side by side: monthly payment, total interest, and how much you could save.">
+<link rel="canonical" href="https://loan-calculator-tools.vercel.app/loan-term-comparison.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "15-Year vs 30-Year Mortgage Comparison",
+  "url": "https://loan-calculator-tools.vercel.app/loan-term-comparison.html",
+  "applicationCategory": "FinanceApplication",
+  "description": "Compare monthly payment and total interest between a 15-year and 30-year mortgage.",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is a 15-year mortgage worth it?",
+      "acceptedAnswer": {"@type": "Answer", "text": "A 15-year mortgage has a higher monthly payment but far less total interest — often saving tens of thousands or more. It's worth it if you can afford the higher payment and want to own your home sooner."}
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a 30-year mortgage cost vs a 15-year?",
+      "acceptedAnswer": {"@type": "Answer", "text": "A 30-year loan has a lower monthly payment but roughly doubles the total interest compared to a 15-year at the same rate. The shorter term also usually comes with a lower rate."}
+    },
+    {
+      "@type": "Question",
+      "name": "Which mortgage term should I choose?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Choose a 15-year if you can comfortably afford the payment and want to minimize interest. Choose a 30-year if you need a lower payment or prefer to invest the difference. Consider your cash flow and goals."}
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#F7F8FB;--card:#ffffff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;
+    --good:#2E9E6B;--good-light:#E8F6EF;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:36px 18px 56px;}
+  header.top{padding:6px 0 22px;}
+  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
+  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
+  h1{font-size:clamp(26px,4.5vw,34px);font-weight:800;letter-spacing:-.5px;line-height:1.25;margin:12px 0 10px;}
+  .sub{font-size:16px;color:var(--muted);max-width:640px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 24px;margin-top:26px;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row .field{flex:1;min-width:170px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .field .hint{font-size:12px;color:var(--muted);font-weight:400;}
+  .input{width:100%;padding:13px 14px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#FDFDFE;outline:none;transition:border-color .15s;}
+  .input:focus{border-color:var(--brand);background:#fff;}
+  .btn{width:100%;padding:15px;font-size:16px;font-weight:700;color:#fff;background:var(--brand);border:none;border-radius:11px;cursor:pointer;margin-top:6px;transition:background .15s;}
+  .btn:hover{background:var(--brand-dark);}
+  .result{margin-top:24px;border-top:1px solid var(--line);padding-top:20px;}
+  .result.hidden{display:none;}
+  .res-main{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .res-box{flex:1;min-width:150px;background:var(--brand-light);border-radius:14px;padding:16px;}
+  .res-box .lbl{font-size:12.5px;color:var(--brand-dark);font-weight:600;}
+  .res-box .val{font-size:clamp(20px,3.8vw,28px);font-weight:800;color:var(--brand-dark);margin-top:2px;}
+  .res-box.alt{background:var(--good-light);}
+  .res-box.alt .lbl,.res-box.alt .val{color:var(--good);}
+  .section{margin-top:40px;}
+  .section h2{font-size:21px;font-weight:800;letter-spacing:-.3px;margin-bottom:12px;}
+  .section p{font-size:15px;color:#3A4757;margin-bottom:12px;}
+  .section ul{font-size:15px;color:#3A4757;margin:0 0 12px 20px;}
+  .section li{margin-bottom:8px;}
+  .callout{background:var(--brand-light);border-left:4px solid var(--brand);padding:14px 16px;border-radius:10px;margin:14px 0;}
+  .callout strong{color:var(--brand-dark);}
+  table.chart{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px;}
+  table.chart th,table.chart td{border:1px solid var(--line);padding:10px;text-align:left;}
+  table.chart th{background:var(--brand-light);color:var(--brand-dark);font-weight:700;}
+  table.chart tr:nth-child(even) td{background:#FDFDFE;}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{padding:15px 18px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q span{color:var(--brand);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 18px 14px;font-size:14px;color:#3A4757;line-height:1.7;}
+  .back{display:inline-block;margin-top:8px;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
+  .related{margin-top:8px;font-size:13px;color:var(--muted);}
+  .related a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .more-tools{margin-top:40px;background:var(--brand-light);border-radius:var(--radius);padding:22px 20px;}
+  .more-tools h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+  .more-tools ul{list-style:none;}
+  .more-tools li{margin-bottom:6px;font-size:14px;}
+  .more-tools a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .disclaimer{font-size:12.5px;color:#8A94A2;margin-top:24px;line-height:1.7;}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);}
+  footer a{color:var(--brand-dark);text-decoration:none;}
+  @media (max-width:520px){.card{padding:20px 16px;}.wrap{padding:24px 14px 44px;}.row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← All loan calculators</a>
+  <header class="top">
+    <div class="brand"><span></span> Loan Calculator Tools</div>
+    <h1>15-Year vs 30-Year Mortgage</h1>
+    <p class="sub">A lower payment now, or a much lower total cost? See the real difference.</p>
+  </header>
+
+  <div class="related">Related: <a href="mortgage-payment-calculator.html">Mortgage Payment</a> · <a href="what-is-a-good-mortgage-rate.html">What Is a Good Rate</a></div>
+
+  <div class="card">
+    <div class="row">
+      <div class="field">
+        <label for="amount">Loan amount <span class="hint">($)</span></label>
+        <input class="input" id="amount" type="number" min="0" value="300000" step="1000">
+      </div>
+      <div class="field">
+        <label for="rate15">15-year rate <span class="hint">(%)</span></label>
+        <input class="input" id="rate15" type="number" min="0" value="5.5" step="0.05">
+      </div>
+      <div class="field">
+        <label for="rate30">30-year rate <span class="hint">(%)</span></label>
+        <input class="input" id="rate30" type="number" min="0" value="6.5" step="0.05">
+      </div>
+    </div>
+    <button class="btn" id="calc">Compare terms</button>
+
+    <div class="result hidden" id="result">
+      <div class="res-main">
+        <div class="res-box">
+          <div class="lbl">15-yr payment / mo</div>
+          <div class="val" id="r-p15">—</div>
+        </div>
+        <div class="res-box">
+          <div class="lbl">30-yr payment / mo</div>
+          <div class="val" id="r-p30">—</div>
+        </div>
+        <div class="res-box alt">
+          <div class="lbl">15-yr total interest</div>
+          <div class="val" id="r-i15">—</div>
+        </div>
+        <div class="res-box">
+          <div class="lbl">30-yr total interest</div>
+          <div class="val" id="r-i30">—</div>
+        </div>
+        <div class="res-box alt">
+          <div class="lbl">Interest saved (15-yr)</div>
+          <div class="val" id="r-save">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <h2>How to use this calculator</h2>
+    <ul>
+      <li>Enter the <strong>loan amount</strong> and typical <strong>15-year and 30-year rates</strong>.</li>
+      <li>Tap <strong>Compare terms</strong> to see both monthly payments, total interest, and how much a 15-year saves you.</li>
+      <li>15-year loans usually come with a lower rate, but the higher payment is the trade-off.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>The difference in one table</h2>
+    <table class="chart">
+      <tr><th></th><th>15-year</th><th>30-year</th></tr>
+      <tr><td>Monthly payment</td><td>Higher</td><td>Lower</td></tr>
+      <tr><td>Total interest</td><td>Much lower</td><td>Much higher</td></tr>
+      <tr><td>Own the home</td><td>In 15 years</td><td>In 30 years</td></tr>
+      <tr><td>Best for</td><td>Borrowers who can afford more</td><td>Budget-conscious, investors</td></tr>
+    </table>
+  </section>
+
+  <section class="section">
+    <h2>Which should you choose?</h2>
+    <div class="callout"><strong>The 30-year isn't automatically worse.</strong> The lower payment frees cash you could invest. If your investment return beats your mortgage rate, the 30-year can come out ahead despite paying more interest.</div>
+    <p>But if you want guaranteed savings and to own your home debt-free sooner, the 15-year is hard to beat — often saving more than half the total interest.</p>
+  </section>
+
+  <section class="section">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">Is a 15-year mortgage worth it?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">A 15-year mortgage has a higher monthly payment but far less total interest — often saving tens of thousands or more. It's worth it if you can afford the higher payment and want to own your home sooner.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How much does a 30-year mortgage cost vs a 15-year?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">A 30-year loan has a lower monthly payment but roughly doubles the total interest compared to a 15-year at the same rate. The shorter term also usually comes with a lower rate.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Which mortgage term should I choose?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Choose a 15-year if you can comfortably afford the payment and want to minimize interest. Choose a 30-year if you need a lower payment or prefer to invest the difference. Consider your cash flow and goals.</div></div>
+    </div>
+  </section>
+
+  <div class="more-tools">
+    <h3>You might also need</h3>
+    <ul>
+      <li><a href="mortgage-payment-calculator.html">Mortgage Payment Calculator</a> — see the full amortization.</li>
+      <li><a href="what-is-a-good-mortgage-rate.html">What Is a Good Mortgage Rate</a> — benchmark rates.</li>
+      <li><a href="loan-payoff-calculator.html">Payoff Calculator</a> — another way to save interest.</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">This calculator provides estimates for general guidance only and is not financial advice. Rates vary by lender, credit, and market. Always confirm with a qualified professional.</div>
+
+  <footer><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var result=document.getElementById("result");
+  function fmt(n){return "$"+Math.round(n).toLocaleString("en-US");}
+  function pay(amt,rate,termY){
+    var n=termY*12,i=rate/100/12;
+    if(i===0){return amt/n;}
+    return amt*i*Math.pow(1+i,n)/(Math.pow(1+i,n)-1);
+  }
+  function compute(){
+    var amt=parseFloat(document.getElementById("amount").value);
+    var r15=parseFloat(document.getElementById("rate15").value);
+    var r30=parseFloat(document.getElementById("rate30").value);
+    if(isNaN(amt)||amt<=0||isNaN(r15)||r15<0||isNaN(r30)||r30<0){
+      document.getElementById("r-p15").textContent="—";
+      document.getElementById("r-p30").textContent="—";
+      document.getElementById("r-i15").textContent="—";
+      document.getElementById("r-i30").textContent="—";
+      document.getElementById("r-save").textContent="—";
+      result.classList.remove("hidden");
+      return;
+    }
+    var p15=pay(amt,r15,15), p30=pay(amt,r30,30);
+    var i15=p15*15*12-amt, i30=p30*30*12-amt;
+    document.getElementById("r-p15").textContent=fmt(p15);
+    document.getElementById("r-p30").textContent=fmt(p30);
+    document.getElementById("r-i15").textContent=fmt(i15);
+    document.getElementById("r-i30").textContent=fmt(i30);
+    document.getElementById("r-save").textContent=fmt(Math.max(0,i30-i15));
+    result.classList.remove("hidden");
+  }
+  document.getElementById("calc").addEventListener("click",compute);
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling;
+      if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';}
+      else{a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+  compute();
+})();
+</script>
+</body>
+</html>

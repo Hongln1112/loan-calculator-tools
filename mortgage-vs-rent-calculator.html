@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage vs Rent Calculator — Should You Buy or Rent?</title>
+<meta name="description" content="Compare buying a home against renting with this free calculator. See monthly cost, total interest, and what your money could do over time.">
+<link rel="canonical" href="https://loan-calculator-tools.vercel.app/mortgage-vs-rent-calculator.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%96%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mortgage vs Rent Calculator",
+  "url": "https://loan-calculator-tools.vercel.app/mortgage-vs-rent-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "description": "Compare the long-term cost of buying a home versus renting.",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it better to buy or rent?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Buying builds equity and can pay off over time, but ties up cash and has large upfront costs. Renting is flexible with lower upfront costs but builds no equity. The right answer depends on how long you'll stay and your local market."}
+    },
+    {
+      "@type": "Question",
+      "name": "How long should I stay before buying makes sense?",
+      "acceptedAnswer": {"@type": "Answer", "text": "A common rule of thumb is 5 to 7 years. The closing costs, down payment, and ongoing maintenance need time to be recovered through equity and appreciation before buying beats renting."}
+    },
+    {
+      "@type": "Question",
+      "name": "What costs does renting avoid?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Renting avoids the down payment, closing costs, property taxes, insurance, maintenance, and repairs that homeownership brings. Your rent may rise over time, but you have no repair bills."}
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#F7F8FB;--card:#ffffff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;
+    --good:#2E9E6B;--good-light:#E8F6EF;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:36px 18px 56px;}
+  header.top{padding:6px 0 22px;}
+  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
+  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
+  h1{font-size:clamp(26px,4.5vw,34px);font-weight:800;letter-spacing:-.5px;line-height:1.25;margin:12px 0 10px;}
+  .sub{font-size:16px;color:var(--muted);max-width:640px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 24px;margin-top:26px;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row .field{flex:1;min-width:180px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .field .hint{font-size:12px;color:var(--muted);font-weight:400;}
+  .input{width:100%;padding:13px 14px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#FDFDFE;outline:none;transition:border-color .15s;}
+  .input:focus{border-color:var(--brand);background:#fff;}
+  .btn{width:100%;padding:15px;font-size:16px;font-weight:700;color:#fff;background:var(--brand);border:none;border-radius:11px;cursor:pointer;margin-top:6px;transition:background .15s;}
+  .btn:hover{background:var(--brand-dark);}
+  .result{margin-top:24px;border-top:1px solid var(--line);padding-top:20px;}
+  .result.hidden{display:none;}
+  .res-main{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .res-box{flex:1;min-width:150px;background:var(--brand-light);border-radius:14px;padding:16px;}
+  .res-box .lbl{font-size:12.5px;color:var(--brand-dark);font-weight:600;}
+  .res-box .val{font-size:clamp(22px,4vw,30px);font-weight:800;color:var(--brand-dark);margin-top:2px;}
+  .res-box.alt{background:var(--good-light);}
+  .res-box.alt .lbl,.res-box.alt .val{color:var(--good);}
+  .section{margin-top:40px;}
+  .section h2{font-size:21px;font-weight:800;letter-spacing:-.3px;margin-bottom:12px;}
+  .section p{font-size:15px;color:#3A4757;margin-bottom:12px;}
+  .section ul{font-size:15px;color:#3A4757;margin:0 0 12px 20px;}
+  .section li{margin-bottom:8px;}
+  .callout{background:var(--brand-light);border-left:4px solid var(--brand);padding:14px 16px;border-radius:10px;margin:14px 0;}
+  .callout strong{color:var(--brand-dark);}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{padding:15px 18px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q span{color:var(--brand);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 18px 14px;font-size:14px;color:#3A4757;line-height:1.7;}
+  .back{display:inline-block;margin-top:8px;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
+  .related{margin-top:8px;font-size:13px;color:var(--muted);}
+  .related a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .more-tools{margin-top:40px;background:var(--brand-light);border-radius:var(--radius);padding:22px 20px;}
+  .more-tools h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+  .more-tools ul{list-style:none;}
+  .more-tools li{margin-bottom:6px;font-size:14px;}
+  .more-tools a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .disclaimer{font-size:12.5px;color:#8A94A2;margin-top:24px;line-height:1.7;}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);}
+  footer a{color:var(--brand-dark);text-decoration:none;}
+  @media (max-width:520px){.card{padding:20px 16px;}.wrap{padding:24px 14px 44px;}.row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← All loan calculators</a>
+  <header class="top">
+    <div class="brand"><span></span> Loan Calculator Tools</div>
+    <h1>Mortgage vs Rent Calculator</h1>
+    <p class="sub">Buying builds equity, but renting is flexible. Compare the real long-term cost here.</p>
+  </header>
+
+  <div class="related">Related: <a href="mortgage-payment-calculator.html">Mortgage Payment</a> · <a href="loan-affordability-calculator.html">How Much Can I Borrow</a></div>
+
+  <div class="card">
+    <div class="row">
+      <div class="field">
+        <label for="price">Home price <span class="hint">($)</span></label>
+        <input class="input" id="price" type="number" min="0" value="400000" step="5000">
+      </div>
+      <div class="field">
+        <label for="rent">Monthly rent <span class="hint">($)</span></label>
+        <input class="input" id="rent" type="number" min="0" value="2000" step="50">
+      </div>
+      <div class="field">
+        <label for="rate">Mortgage rate <span class="hint">(%)</span></label>
+        <input class="input" id="rate" type="number" min="0" value="6.5" step="0.05">
+      </div>
+      <div class="field">
+        <label for="down">Down payment <span class="hint">(%)</span></label>
+        <input class="input" id="down" type="number" min="0" max="100" value="20" step="1">
+      </div>
+      <div class="field">
+        <label for="years">How long you'll stay <span class="hint">(years)</span></label>
+        <input class="input" id="years" type="number" min="1" max="40" value="7">
+      </div>
+    </div>
+    <button class="btn" id="calc">Compare buy vs rent</button>
+
+    <div class="result hidden" id="result">
+      <div class="res-main">
+        <div class="res-box">
+          <div class="lbl">Mortgage payment / mo</div>
+          <div class="val" id="r-month">—</div>
+        </div>
+        <div class="res-box">
+          <div class="lbl">Interest paid in period</div>
+          <div class="val" id="r-interest">—</div>
+        </div>
+        <div class="res-box">
+          <div class="lbl">Total rent in period</div>
+          <div class="val" id="r-rent">—</div>
+        </div>
+        <div class="res-box alt">
+          <div class="lbl">Equity built (principal)</div>
+          <div class="val" id="r-equity">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <h2>How to use this calculator</h2>
+    <ul>
+      <li>Enter the <strong>home price</strong>, your <strong>monthly rent</strong>, the <strong>mortgage rate</strong>, your <strong>down payment %</strong>, and how long you plan to stay.</li>
+      <li>Tap <strong>Compare</strong> to see your mortgage payment, how much interest you pay in that time, what you'd spend on rent, and how much equity you build.</li>
+      <li>The longer you stay, the more equity you build — which is the heart of the buy-vs-rent decision.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>What this comparison misses</h2>
+    <div class="callout"><strong>This is a simplified view.</strong> Buying also brings property taxes, insurance, maintenance, and closing costs. Renting avoids repairs but has no equity. Factor those in before deciding.</div>
+    <p>Homeownership also has non-financial benefits — stability, control, and the ability to build wealth. Renting offers flexibility to move. There's no single right answer; it depends on your plans.</p>
+  </section>
+
+  <section class="section">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">Is it better to buy or rent?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Buying builds equity and can pay off over time, but ties up cash and has large upfront costs. Renting is flexible with lower upfront costs but builds no equity. The right answer depends on how long you'll stay and your local market.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long should I stay before buying makes sense?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">A common rule of thumb is 5 to 7 years. The closing costs, down payment, and ongoing maintenance need time to be recovered through equity and appreciation before buying beats renting.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What costs does renting avoid?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Renting avoids the down payment, closing costs, property taxes, insurance, maintenance, and repairs that homeownership brings. Your rent may rise over time, but you have no repair bills.</div></div>
+    </div>
+  </section>
+
+  <div class="more-tools">
+    <h3>You might also need</h3>
+    <ul>
+      <li><a href="mortgage-payment-calculator.html">Mortgage Payment Calculator</a> — payment on a home loan.</li>
+      <li><a href="loan-affordability-calculator.html">How Much Can I Borrow</a> — from a monthly payment.</li>
+      <li><a href="loan-payoff-calculator.html">Payoff Calculator</a> — how extra payments save you.</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">This calculator provides estimates for general guidance only and is not financial or tax advice. Property taxes, insurance, maintenance, and appreciation vary by location. Consult a qualified professional before making a decision.</div>
+
+  <footer><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var result=document.getElementById("result");
+  function fmt(n){return "$"+Math.round(n).toLocaleString("en-US");}
+  function compute(){
+    var price=parseFloat(document.getElementById("price").value);
+    var rent=parseFloat(document.getElementById("rent").value);
+    var rate=parseFloat(document.getElementById("rate").value);
+    var down=parseFloat(document.getElementById("down").value);
+    var years=parseFloat(document.getElementById("years").value);
+    if(isNaN(price)||price<=0||isNaN(rent)||rent<=0||isNaN(rate)||rate<0||isNaN(down)||down<0||down>100||isNaN(years)||years<=0){
+      result.classList.remove("hidden");
+      document.getElementById("r-month").textContent="—";
+      document.getElementById("r-interest").textContent="—";
+      document.getElementById("r-rent").textContent="—";
+      document.getElementById("r-equity").textContent="—";
+      return;
+    }
+    var amt=price*(1-down/100);
+    var i=rate/100/12;
+    var n=30*12; // standard 30yr
+    var monthly=amt*i*Math.pow(1+i,n)/(Math.pow(1+i,n)-1);
+    // over the stay period: interest = total paid - principal paid
+    var stayM=years*12;
+    var bal=amt;
+    var interestPaid=0, principalPaid=0;
+    for(var m=0;m<stayM;m++){
+      var intPart=bal*i;
+      var prin=monthly-intPart;
+      interestPaid+=intPart; principalPaid+=prin;
+      bal-=prin;
+      if(bal<=0) break;
+    }
+    var totalRent=rent*years*12;
+    document.getElementById("r-month").textContent=fmt(monthly);
+    document.getElementById("r-interest").textContent=fmt(interestPaid);
+    document.getElementById("r-rent").textContent=fmt(totalRent);
+    document.getElementById("r-equity").textContent=fmt(principalPaid);
+    result.classList.remove("hidden");
+  }
+  document.getElementById("calc").addEventListener("click",compute);
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling;
+      if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';}
+      else{a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+  compute();
+})();
+</script>
+</body>
+</html>

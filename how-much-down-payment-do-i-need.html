@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Much Down Payment Do I Need? (2026 Guide)</title>
+<meta name="description" content="The 20% down payment myth, what you actually need for different loans, and the real trade-offs of putting more or less down.">
+<link rel="canonical" href="https://loan-calculator-tools.vercel.app/how-much-down-payment-do-i-need.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%91%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Much Down Payment Do I Need?",
+  "description": "What you actually need for a down payment, and the trade-offs of more vs less.",
+  "publisher": {"@type": "Organization", "name": "Loan Calculator Tools"},
+  "mainEntityOfPage": "https://loan-calculator-tools.vercel.app/how-much-down-payment-do-i-need.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much down payment do I really need?",
+      "acceptedAnswer": {"@type": "Answer", "text": "20% avoids private mortgage insurance (PMI), but many programs allow far less — conventional loans can go as low as 3–5%, and FHA loans as low as 3.5%. The right amount balances a lower monthly cost against keeping cash for emergencies."}
+    },
+    {
+      "@type": "Question",
+      "name": "Why does everyone say 20% down?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Because 20% is the threshold at which you avoid PMI, and it usually gets you the best rate. But it's not required — putting less down is common, you just pay for the insurance until you build 20% equity."}
+    },
+    {
+      "@type": "Question",
+      "name": "What's the minimum down payment for a house?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Conventional loans often start at 3–5%, FHA at 3.5%, and some VA and USDA loans require nothing down. The minimum depends on your loan type, credit, and lender."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is a bigger down payment always better?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Not always. A bigger down payment means a smaller loan and lower monthly cost, but it ties up cash you might need for emergencies, repairs, or investments. Find the balance that keeps you comfortable."}
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#F7F8FB;--card:#ffffff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;
+    --good:#2E9E6B;--good-light:#E8F6EF;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:36px 18px 56px;}
+  header.top{padding:6px 0 22px;}
+  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
+  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
+  h1{font-size:clamp(27px,4.6vw,36px);font-weight:800;letter-spacing:-.6px;line-height:1.25;margin:12px 0 10px;}
+  .sub{font-size:16px;color:var(--muted);max-width:640px;}
+  .back{display:inline-block;margin-top:8px;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
+  .related{margin-top:8px;font-size:13px;color:var(--muted);}
+  .related a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .verdict{background:var(--good-light);border:1px solid #CFE3D6;border-left:5px solid var(--good);border-radius:14px;padding:20px 22px;margin-top:24px;}
+  .verdict .v-t{font-size:13px;font-weight:700;color:var(--good);letter-spacing:.5px;text-transform:uppercase;}
+  .verdict .v-big{font-size:21px;font-weight:800;margin:6px 0 4px;color:var(--ink);}
+  .verdict p{font-size:14.5px;color:#3A4757;}
+  .block{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin-top:22px;}
+  .block h2{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:12px;}
+  .block p{font-size:15px;color:#3A4757;margin-bottom:12px;}
+  .block ul{font-size:15px;color:#3A4757;margin:0 0 12px 20px;}
+  .block li{margin-bottom:8px;}
+  table.chart{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px;}
+  table.chart th,table.chart td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top;}
+  table.chart th{background:var(--brand-light);color:var(--brand-dark);font-weight:700;}
+  table.chart tr:nth-child(even) td{background:#FDFDFE;}
+  .callout{background:var(--brand-light);border-left:4px solid var(--brand);padding:14px 16px;border-radius:10px;margin:14px 0;}
+  .callout strong{color:var(--brand-dark);}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{padding:15px 18px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q span{color:var(--brand);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 18px 14px;font-size:14px;color:#3A4757;line-height:1.7;}
+  .more-tools{margin-top:30px;background:var(--brand-light);border-radius:var(--radius);padding:22px 20px;}
+  .more-tools h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+  .more-tools ul{list-style:none;}
+  .more-tools li{margin-bottom:6px;font-size:14px;}
+  .more-tools a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .disclaimer{font-size:12.5px;color:#8A94A2;margin-top:24px;line-height:1.7;}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);}
+  footer a{color:var(--brand-dark);text-decoration:none;}
+  @media (max-width:520px){.block,.verdict{padding:20px 16px;}.wrap{padding:24px 14px 44px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← All loan calculators</a>
+  <header class="top">
+    <div class="brand"><span></span> Loan Calculator Tools</div>
+    <h1>How Much Down Payment Do I Need?</h1>
+    <p class="sub">The 20% rule is a guide, not a requirement. Here's what you actually need.</p>
+  </header>
+
+  <div class="related">Related: <a href="loan-affordability-calculator.html">How Much Can I Borrow</a> · <a href="mortgage-payment-calculator.html">Mortgage Payment</a></div>
+
+  <div class="verdict">
+    <div class="v-t">The short answer</div>
+    <div class="v-big">20% avoids PMI — but you can buy with far less.</div>
+    <p>Conventional loans can go as low as 3–5% down, FHA as low as 3.5%, and some VA/USDA loans at 0%. The trade-off is paying mortgage insurance until you build equity.</p>
+  </div>
+
+  <div class="block">
+    <h2>Down payment by loan type</h2>
+    <table class="chart">
+      <tr><th>Loan type</th><th>Minimum down</th><th>Notes</th></tr>
+      <tr><td>Conventional</td><td>3–5%</td><td>Most flexible; PMI if under 20%</td></tr>
+      <tr><td>FHA</td><td>3.5%</td><td>Easier credit; mortgage insurance for life of loan</td></tr>
+      <tr><td>VA</td><td>0%</td><td>For eligible veterans/service members</td></tr>
+      <tr><td>USDA</td><td>0%</td><td>For eligible rural properties</td></tr>
+    </table>
+    <p>Rates and minimums vary by lender and your credit. These are common starting points, not guarantees.</p>
+  </div>
+
+  <div class="block">
+    <h2>Why 20% is the sweet spot</h2>
+    <ul>
+      <li><strong>Avoids PMI</strong> — you skip private mortgage insurance, saving each month.</li>
+      <li><strong>Better rate</strong> — lenders reward lower loan-to-value with lower rates.</li>
+      <li><strong>More equity</strong> — you own more of the home from day one.</li>
+    </ul>
+    <div class="callout"><strong>But it's not always smart to wait for 20%.</strong> If prices are rising or rent keeps climbing, buying now with a smaller down payment can beat waiting years to save more. Weigh your market and timeline.</div>
+  </div>
+
+  <div class="block">
+    <h2>Bigger isn't always better</h2>
+    <p>A larger down payment shrinks your loan and monthly cost, but it ties up cash you might need for <strong>emergencies, repairs, or investments</strong>. Many homeowners regret draining their savings.</p>
+    <p>Use the <a href="loan-affordability-calculator.html">How Much Can I Borrow</a> calculator to see how your down payment changes the loan that fits your budget — and keep an emergency cushion on top.</p>
+  </div>
+
+  <div class="block">
+    <h2>Down payment vs monthly cost</h2>
+    <p>Here's what different down payments do to a $350,000 home (30-year, 6.5% rate). Smaller down means a bigger loan and higher payment — and PMI until you reach 20% equity:</p>
+    <table class="chart">
+      <tr><th>Down payment</th><th>Loan amount</th><th>Monthly P&amp;I</th><th>PMI?</th></tr>
+      <tr><td>20% ($70,000)</td><td>$280,000</td><td>≈ $1,770</td><td>No</td></tr>
+      <tr><td>10% ($35,000)</td><td>$315,000</td><td>≈ $1,991</td><td>Yes</td></tr>
+      <tr><td>5% ($17,500)</td><td>$332,500</td><td>≈ $2,102</td><td>Yes</td></tr>
+      <tr><td>3.5% ($12,250)</td><td>$337,750</td><td>≈ $2,135</td><td>Yes</td></tr>
+    </table>
+    <p>PMI is usually 0.5–1.5% of the loan per year — a few hundred dollars a month you'll shed once you hit 20% equity.</p>
+  </div>
+
+  <div class="block">
+    <h2>The trade-off: cash now vs monthly later</h2>
+    <div class="callout"><strong>Draining savings to hit 20% can backfire.</strong> A bigger down payment lowers your payment, but leaves you thin for closing costs, a moving month with double rent, repairs, or a job change. Most pros keep 3–6 months of expenses on top of the down payment.</div>
+    <p>If you don't yet have that cushion, a smaller down payment with PMI is often the smarter, safer move — you can refinance or wait it out once equity builds.</p>
+  </div>
+
+  <div class="block">
+    <h2>Where does the down payment come from?</h2>
+    <ul>
+      <li><strong>Savings</strong> — the cleanest source.</li>
+      <li><strong>Gifted funds</strong> — family gifts are allowed on many loans, with a documented letter.</li>
+      <li><strong>Retirement accounts</strong> — first-time buyers can often use penalty-free withdrawals; check limits.</li>
+      <li><strong>Down-payment assistance programs</strong> — many states and cities offer grants or low-interest help.</li>
+    </ul>
+    <p>Lenders need to "source" your funds — large unexplained deposits can slow approval, so keep records.</p>
+  </div>
+
+  <div class="block">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">How much down payment do I really need?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">20% avoids PMI, but many programs allow far less — conventional loans can go as low as 3–5%, and FHA as low as 3.5%. The right amount balances a lower monthly cost against keeping cash for emergencies.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why does everyone say 20% down?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Because 20% is the threshold at which you avoid PMI, and it usually gets you the best rate. But it's not required — putting less down is common, you just pay for insurance until you build 20% equity.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the minimum down payment for a house?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Conventional loans often start at 3–5%, FHA at 3.5%, and some VA and USDA loans require nothing down. The minimum depends on your loan type, credit, and lender.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is a bigger down payment always better?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Not always. A bigger down payment means a smaller loan and lower monthly cost, but it ties up cash you might need for emergencies, repairs, or investments. Find the balance that keeps you comfortable.</div></div>
+    </div>
+  </div>
+
+  <div class="more-tools">
+    <h3>You might also need</h3>
+    <ul>
+      <li><a href="loan-affordability-calculator.html">How Much Can I Borrow</a> — see how down payment changes your loan.</li>
+      <li><a href="mortgage-payment-calculator.html">Mortgage Payment Calculator</a> — your exact monthly cost.</li>
+      <li><a href="how-much-house-can-i-afford.html">How Much House Can I Afford</a> — the full picture.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2>Sources</h2>
+    <ul style="font-size:13.5px;color:#3A4757;">
+      <li>Down-payment minimums and PMI by loan type — U.S. Department of Housing and Urban Development (HUD) and Consumer Financial Protection Bureau (CFPB).</li>
+      <li>FHA, VA and USDA loan programs — official agency program guidance.</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">This is general educational information, not financial advice. Loan programs, minimums, and PMI rules vary by lender and change over time. Confirm the details with a licensed mortgage professional.</div>
+
+  <footer><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling;
+      if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';}
+      else{a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+})();
+</script>
+</body>
+</html>

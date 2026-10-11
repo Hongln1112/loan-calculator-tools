@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Payoff Calculator — How Extra Payments Save You Interest</title>
+<meta name="description" content="See how extra payments shorten your loan and slash total interest. Compare a standard payment with biweekly or extra payments on any loan.">
+<link rel="canonical" href="https://loan-calculator-tools.vercel.app/loan-payoff-calculator.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%8F%B0%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Loan Payoff Calculator",
+  "url": "https://loan-calculator-tools.vercel.app/loan-payoff-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "description": "Compare standard payments against extra or biweekly payments to see interest saved and time cut from your loan.",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it worth paying off my loan early?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Paying extra cuts the total interest and shortens the loan, but only makes sense if your extra cash could earn more elsewhere or if you have other high-interest debt. Compare the numbers here first."}
+    },
+    {
+      "@type": "Question",
+      "name": "How much does one extra payment a year save?",
+      "acceptedAnswer": {"@type": "Answer", "text": "On a typical 30-year mortgage, making one extra payment a year can cut the term by several years and save tens of thousands in interest, depending on the rate."}
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between biweekly and extra payments?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Biweekly payments split your payment in half every two weeks, which equals 13 full payments a year — effectively one extra payment annually. Both strategies reduce interest and shorten the term."}
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#F7F8FB;--card:#ffffff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;
+    --good:#2E9E6B;--good-light:#E8F6EF;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:36px 18px 56px;}
+  header.top{padding:6px 0 22px;}
+  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
+  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
+  h1{font-size:clamp(26px,4.5vw,34px);font-weight:800;letter-spacing:-.5px;line-height:1.25;margin:12px 0 10px;}
+  .sub{font-size:16px;color:var(--muted);max-width:640px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 24px;margin-top:26px;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row .field{flex:1;min-width:180px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .field .hint{font-size:12px;color:var(--muted);font-weight:400;}
+  .input{width:100%;padding:13px 14px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#FDFDFE;outline:none;transition:border-color .15s;}
+  .input:focus{border-color:var(--brand);background:#fff;}
+  .btn{width:100%;padding:15px;font-size:16px;font-weight:700;color:#fff;background:var(--brand);border:none;border-radius:11px;cursor:pointer;margin-top:6px;transition:background .15s;}
+  .btn:hover{background:var(--brand-dark);}
+  .result{margin-top:24px;border-top:1px solid var(--line);padding-top:20px;}
+  .result.hidden{display:none;}
+  .res-main{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .res-box{flex:1;min-width:150px;background:var(--brand-light);border-radius:14px;padding:16px;}
+  .res-box .lbl{font-size:12.5px;color:var(--brand-dark);font-weight:600;}
+  .res-box .val{font-size:clamp(22px,4vw,30px);font-weight:800;color:var(--brand-dark);margin-top:2px;}
+  .res-box.alt{background:var(--good-light);}
+  .res-box.alt .lbl,.res-box.alt .val{color:var(--good);}
+  .interpret{margin-top:16px;background:#FBFAFE;border:1px dashed var(--brand);border-radius:12px;padding:14px 16px;}
+  .interpret.hidden{display:none;}
+  .int-title{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--brand-dark);margin-bottom:6px;}
+  .int-line{font-size:14px;color:#3A4757;line-height:1.7;}
+  .section{margin-top:40px;}
+  .section h2{font-size:21px;font-weight:800;letter-spacing:-.3px;margin-bottom:12px;}
+  .section p{font-size:15px;color:#3A4757;margin-bottom:12px;}
+  .section ul{font-size:15px;color:#3A4757;margin:0 0 12px 20px;}
+  .section li{margin-bottom:8px;}
+  .callout{background:var(--brand-light);border-left:4px solid var(--brand);padding:14px 16px;border-radius:10px;margin:14px 0;}
+  .callout strong{color:var(--brand-dark);}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{padding:15px 18px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q span{color:var(--brand);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 18px 14px;font-size:14px;color:#3A4757;line-height:1.7;}
+  .back{display:inline-block;margin-top:8px;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
+  .related{margin-top:8px;font-size:13px;color:var(--muted);}
+  .related a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .more-tools{margin-top:40px;background:var(--brand-light);border-radius:var(--radius);padding:22px 20px;}
+  .more-tools h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+  .more-tools ul{list-style:none;}
+  .more-tools li{margin-bottom:6px;font-size:14px;}
+  .more-tools a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .disclaimer{font-size:12.5px;color:#8A94A2;margin-top:24px;line-height:1.7;}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);}
+  footer a{color:var(--brand-dark);text-decoration:none;}
+  @media (max-width:520px){.card{padding:20px 16px;}.wrap{padding:24px 14px 44px;}.row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← All loan calculators</a>
+  <header class="top">
+    <div class="brand"><span></span> Loan Calculator Tools</div>
+    <h1>Loan Payoff Calculator</h1>
+    <p class="sub">How much time and interest can extra payments save you? Compare in seconds.</p>
+  </header>
+
+  <div class="related">Related: <a href="mortgage-payment-calculator.html">Mortgage Payment</a> · <a href="loan-interest-calculator.html">Interest Calculator</a></div>
+
+  <div class="card">
+    <div class="row">
+      <div class="field">
+        <label for="amount">Loan amount <span class="hint">($)</span></label>
+        <input class="input" id="amount" type="number" min="0" value="250000" step="1000">
+      </div>
+      <div class="field">
+        <label for="rate">Annual interest rate <span class="hint">(%)</span></label>
+        <input class="input" id="rate" type="number" min="0" value="6.5" step="0.05">
+      </div>
+      <div class="field">
+        <label for="term">Loan term <span class="hint">(years)</span></label>
+        <input class="input" id="term" type="number" min="1" max="40" value="30">
+      </div>
+      <div class="field">
+        <label for="extra">Extra payment <span class="hint">($ / month)</span></label>
+        <input class="input" id="extra" type="number" min="0" value="200" step="25">
+      </div>
+    </div>
+    <button class="btn" id="calc">Compare payments</button>
+
+    <div class="result hidden" id="result">
+      <div class="res-main">
+        <div class="res-box">
+          <div class="lbl">Standard monthly</div>
+          <div class="val" id="r-std-month">—</div>
+        </div>
+        <div class="res-box">
+          <div class="lbl">Standard interest</div>
+          <div class="val" id="r-std-int">—</div>
+        </div>
+        <div class="res-box alt">
+          <div class="lbl">With extra: interest saved</div>
+          <div class="val" id="r-saved">—</div>
+        </div>
+        <div class="res-box alt">
+          <div class="lbl">Loan cut by</div>
+          <div class="val" id="r-cut">—</div>
+        </div>
+      </div>
+
+      <div class="interpret hidden" id="interpret">
+        <div class="int-title">What this means</div>
+        <div class="int-line" id="int-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <h2>How to use this calculator</h2>
+    <ul>
+      <li>Enter your <strong>loan amount, rate, and term</strong>, plus the <strong>extra payment</strong> you could add each month.</li>
+      <li>Tap <strong>Compare payments</strong> to see the standard plan side by side with the accelerated plan.</li>
+      <li>You'll see how much interest you save and how many years the loan shortens.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Why extra payments work</h2>
+    <div class="callout"><strong>Extra payments go straight to your principal.</strong> That reduces the balance the interest is calculated on, so you pay less interest and finish the loan sooner.</div>
+    <p>On a 30-year mortgage, even a modest extra payment each month can cut years off your term and save tens of thousands of dollars — which is why so many homeowners accelerate.</p>
+  </section>
+
+  <section class="section">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">Is it worth paying off my loan early?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Paying extra cuts total interest and shortens the loan, but only makes sense if your extra cash could earn more elsewhere or if you have other high-interest debt. Compare the numbers here first.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How much does one extra payment a year save?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">On a typical 30-year mortgage, making one extra payment a year can cut the term by several years and save tens of thousands in interest, depending on the rate.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the difference between biweekly and extra payments?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Biweekly payments split your payment in half every two weeks, which equals 13 full payments a year — effectively one extra payment annually. Both strategies reduce interest and shorten the term.</div></div>
+    </div>
+  </section>
+
+  <div class="more-tools">
+    <h3>You might also need</h3>
+    <ul>
+      <li><a href="loan-interest-calculator.html">Loan Interest Calculator</a> — total interest on any loan.</li>
+      <li><a href="mortgage-payment-calculator.html">Mortgage Payment Calculator</a> — monthly payment on a home loan.</li>
+      <li><a href="mortgage-vs-rent-calculator.html">Mortgage vs Rent</a> — is buying worth it?</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">This calculator provides estimates for general guidance only and is not financial advice. Consider your full financial picture and consult a qualified professional before deciding to prepay.</div>
+
+  <footer><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var result=document.getElementById("result");
+  var interpret=document.getElementById("interpret");
+  var intLine=document.getElementById("int-line");
+  function fmt(n){return "$"+Math.round(n).toLocaleString("en-US");}
+  function payment(amt,rate,term){
+    var n=term*12;
+    var i=rate/100/12;
+    if(i===0){return amt/n;}
+    return amt*i*Math.pow(1+i,n)/(Math.pow(1+i,n)-1);
+  }
+  function compute(){
+    var amt=parseFloat(document.getElementById("amount").value);
+    var rate=parseFloat(document.getElementById("rate").value);
+    var term=parseFloat(document.getElementById("term").value);
+    var extra=parseFloat(document.getElementById("extra").value)||0;
+    if(isNaN(amt)||amt<=0||isNaN(rate)||rate<0||isNaN(term)||term<=0){
+      result.classList.remove("hidden");
+      document.getElementById("r-std-month").textContent="—";
+      document.getElementById("r-std-int").textContent="—";
+      document.getElementById("r-saved").textContent="—";
+      document.getElementById("r-cut").textContent="—";
+      return;
+    }
+    var stdMonthly=payment(amt,rate,term);
+    var stdTotal=stdMonthly*term*12;
+    var stdInt=stdTotal-amt;
+    // accelerated: pay std+extra monthly, compute months
+    var i=rate/100/12;
+    var pay=stdMonthly+extra;
+    var bal=amt;
+    var months=0;
+    if(i===0){months=Math.ceil(amt/pay);}
+    else{months=Math.ceil(-Math.log(1-i*bal/pay)/Math.log(1+i));}
+    var accTotal=pay*months;
+    var accInt=accTotal-amt;
+    var saved=Math.max(0,stdInt-accInt);
+    var cutYears=(term*12-months)/12;
+    document.getElementById("r-std-month").textContent=fmt(stdMonthly);
+    document.getElementById("r-std-int").textContent=fmt(stdInt);
+    document.getElementById("r-saved").textContent=fmt(saved);
+    document.getElementById("r-cut").textContent=cutYears>=1 ? (Math.round(cutYears)+" yrs") : (Math.round(cutYears*12)+" mo");
+    result.classList.remove("hidden");
+    var msg;
+    if(extra<=0){
+      msg="Add an extra payment to see how much faster you'd pay this off. Even a small monthly extra goes straight to principal and cuts years of interest.";
+    } else {
+      msg="By paying an extra "+fmt(extra)+" a month, you save "+fmt(saved)+" in interest and cut your loan by "+(cutYears>=1?(Math.round(cutYears)+" years"):(Math.round(cutYears*12)+" months"))+". The bigger the extra, the more you save.";
+    }
+    intLine.textContent=msg;
+    interpret.classList.remove("hidden");
+  }
+  document.getElementById("calc").addEventListener("click",compute);
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling;
+      if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';}
+      else{a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+  compute();
+})();
+</script>
+</body>
+</html>

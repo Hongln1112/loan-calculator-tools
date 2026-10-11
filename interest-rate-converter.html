@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interest Rate Converter — Monthly to Annual, APR &amp; More</title>
+<meta name="description" content="Convert between annual, monthly, daily and effective interest rates. See the true yearly cost of any rate in seconds.">
+<link rel="canonical" href="https://loan-calculator-tools.vercel.app/interest-rate-converter.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%87%84%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Interest Rate Converter",
+  "url": "https://loan-calculator-tools.vercel.app/interest-rate-converter.html",
+  "applicationCategory": "FinanceApplication",
+  "description": "Convert between annual, monthly, daily, and effective interest rates.",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert a monthly interest rate to annual?",
+      "acceptedAnswer": {"@type": "Answer", "text": "A simple estimate multiplies the monthly rate by 12. The accurate method compounds it: (1 + monthly rate)^12 - 1, which gives the effective annual rate."}
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between APR and interest rate?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The interest rate is the cost of borrowing only. APR includes fees and other costs, so it's usually higher and gives a truer picture of the loan's annual cost."}
+    },
+    {
+      "@type": "Question",
+      "name": "Why does compounding matter?",
+      "acceptedAnswer": {"@type": "Answer", "text": "The more often interest compounds, the more you actually pay. A 12% annual rate that compounds monthly is effectively more than 12% over a year — this converter shows the real number."}
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#F7F8FB;--card:#ffffff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;
+    --good:#2E9E6B;--good-light:#E8F6EF;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:36px 18px 56px;}
+  header.top{padding:6px 0 22px;}
+  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
+  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
+  h1{font-size:clamp(26px,4.5vw,34px);font-weight:800;letter-spacing:-.5px;line-height:1.25;margin:12px 0 10px;}
+  .sub{font-size:16px;color:var(--muted);max-width:640px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 24px;margin-top:26px;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row .field{flex:1;min-width:180px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .field .hint{font-size:12px;color:var(--muted);font-weight:400;}
+  .input{width:100%;padding:13px 14px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#FDFDFE;outline:none;transition:border-color .15s;}
+  .input:focus{border-color:var(--brand);background:#fff;}
+  .select{width:100%;padding:13px 14px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#FDFDFE;outline:none;}
+  .btn{width:100%;padding:15px;font-size:16px;font-weight:700;color:#fff;background:var(--brand);border:none;border-radius:11px;cursor:pointer;margin-top:6px;transition:background .15s;}
+  .btn:hover{background:var(--brand-dark);}
+  .result{margin-top:24px;border-top:1px solid var(--line);padding-top:20px;}
+  .result.hidden{display:none;}
+  .res-main{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .res-box{flex:1;min-width:170px;background:var(--brand-light);border-radius:14px;padding:16px;}
+  .res-box .lbl{font-size:12.5px;color:var(--brand-dark);font-weight:600;}
+  .res-box .val{font-size:clamp(22px,4vw,30px);font-weight:800;color:var(--brand-dark);margin-top:2px;}
+  .res-box.alt{background:var(--good-light);}
+  .res-box.alt .lbl,.res-box.alt .val{color:var(--good);}
+  .section{margin-top:40px;}
+  .section h2{font-size:21px;font-weight:800;letter-spacing:-.3px;margin-bottom:12px;}
+  .section p{font-size:15px;color:#3A4757;margin-bottom:12px;}
+  .section ul{font-size:15px;color:#3A4757;margin:0 0 12px 20px;}
+  .section li{margin-bottom:8px;}
+  .callout{background:var(--brand-light);border-left:4px solid var(--brand);padding:14px 16px;border-radius:10px;margin:14px 0;}
+  .callout strong{color:var(--brand-dark);}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{padding:15px 18px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q span{color:var(--brand);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 18px 14px;font-size:14px;color:#3A4757;line-height:1.7;}
+  .back{display:inline-block;margin-top:8px;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
+  .related{margin-top:8px;font-size:13px;color:var(--muted);}
+  .related a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .more-tools{margin-top:40px;background:var(--brand-light);border-radius:var(--radius);padding:22px 20px;}
+  .more-tools h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+  .more-tools ul{list-style:none;}
+  .more-tools li{margin-bottom:6px;font-size:14px;}
+  .more-tools a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .disclaimer{font-size:12.5px;color:#8A94A2;margin-top:24px;line-height:1.7;}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);}
+  footer a{color:var(--brand-dark);text-decoration:none;}
+  @media (max-width:520px){.card{padding:20px 16px;}.wrap{padding:24px 14px 44px;}.row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← All loan calculators</a>
+  <header class="top">
+    <div class="brand"><span></span> Loan Calculator Tools</div>
+    <h1>Interest Rate Converter</h1>
+    <p class="sub">Convert any interest rate between annual, monthly, daily, and effective — and see the true yearly cost.</p>
+  </header>
+
+  <div class="related">Related: <a href="loan-interest-calculator.html">Interest Calculator</a> · <a href="mortgage-payment-calculator.html">Mortgage Payment</a></div>
+
+  <div class="card">
+    <div class="row">
+      <div class="field">
+        <label for="rate">Rate</label>
+        <input class="input" id="rate" type="number" min="0" step="0.01" value="1.0">
+      </div>
+      <div class="field">
+        <label for="from">Convert from</label>
+        <select class="select" id="from">
+          <option value="monthly" selected>Monthly rate (%)</option>
+          <option value="annual">Annual rate (%)</option>
+          <option value="daily">Daily rate (%)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" id="calc">Convert rate</button>
+
+    <div class="result hidden" id="result">
+      <div class="res-main">
+        <div class="res-box">
+          <div class="lbl">Annual (simple)</div>
+          <div class="val" id="r-annual">—</div>
+        </div>
+        <div class="res-box alt">
+          <div class="lbl">Annual (effective)</div>
+          <div class="val" id="r-effective">—</div>
+        </div>
+        <div class="res-box">
+          <div class="lbl">Monthly</div>
+          <div class="val" id="r-monthly">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <h2>How to use this converter</h2>
+    <ul>
+      <li>Enter your <strong>rate</strong> and choose whether it's a <strong>monthly, annual, or daily</strong> rate.</li>
+      <li>Tap <strong>Convert rate</strong> to see the annual equivalent, the effective annual rate (with compounding), and the monthly rate.</li>
+      <li>The <strong>effective annual rate</strong> is the one to compare — it shows the true yearly cost once monthly compounding is factored in.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Why compounding matters</h2>
+    <div class="callout"><strong>A monthly rate compounds 12 times a year.</strong> So a 1% monthly rate is not 12% annual — it's about 12.7% effective, because each month's interest earns interest the next month.</div>
+    <p>Always compare loans by their <strong>effective annual rate</strong> or <strong>APR</strong>, not the quoted nominal rate, so you're comparing like for like.</p>
+  </section>
+
+  <section class="section">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">How do I convert a monthly interest rate to annual?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">A simple estimate multiplies the monthly rate by 12. The accurate method compounds it: (1 + monthly rate)^12 - 1, which gives the effective annual rate.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What's the difference between APR and interest rate?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">The interest rate is the cost of borrowing only. APR includes fees and other costs, so it's usually higher and gives a truer picture of the loan's annual cost.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Why does compounding matter?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">The more often interest compounds, the more you actually pay. A 12% annual rate that compounds monthly is effectively more than 12% over a year — this converter shows the real number.</div></div>
+    </div>
+  </section>
+
+  <div class="more-tools">
+    <h3>You might also need</h3>
+    <ul>
+      <li><a href="loan-interest-calculator.html">Loan Interest Calculator</a> — total interest on any loan.</li>
+      <li><a href="mortgage-payment-calculator.html">Mortgage Payment Calculator</a> — payment on a home loan.</li>
+      <li><a href="loan-payoff-calculator.html">Payoff Calculator</a> — how extra payments save you.</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">This converter provides estimates for general guidance only and is not financial advice. Loan terms and APR vary by lender. Always confirm with a qualified professional.</div>
+
+  <footer><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var result=document.getElementById("result");
+  function pct(n){return n.toFixed(3)+"%";}
+  function compute(){
+    var rate=parseFloat(document.getElementById("rate").value);
+    var from=document.getElementById("from").value;
+    if(isNaN(rate)||rate<0){
+      result.classList.remove("hidden");
+      document.getElementById("r-annual").textContent="—";
+      document.getElementById("r-effective").textContent="—";
+      document.getElementById("r-monthly").textContent="—";
+      return;
+    }
+    var monthly, annualSimple, effective;
+    if(from==="monthly"){
+      monthly=rate;
+      annualSimple=monthly*12;
+      effective=(Math.pow(1+monthly/100,12)-1)*100;
+    }else if(from==="annual"){
+      annualSimple=rate;
+      monthly=annualSimple/12;
+      effective=(Math.pow(1+monthly/100,12)-1)*100;
+    }else{ // daily
+      var daily=rate;
+      annualSimple=daily*365;
+      monthly=annualSimple/12;
+      effective=(Math.pow(1+daily/100,365)-1)*100;
+    }
+    document.getElementById("r-annual").textContent=pct(annualSimple);
+    document.getElementById("r-effective").textContent=pct(effective);
+    document.getElementById("r-monthly").textContent=pct(monthly);
+    result.classList.remove("hidden");
+  }
+  document.getElementById("calc").addEventListener("click",compute);
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling;
+      if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';}
+      else{a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+  compute();
+})();
+</script>
+</body>
+</html>

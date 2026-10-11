@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refinance Calculator — Does Refinancing Pay Off?</title>
+<meta name="description" content="Free refinance calculator: see your new payment, how much you save, and how many months to break even after closing costs.">
+<link rel="canonical" href="https://loan-calculator-tools.vercel.app/refinance-calculator.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%81%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Refinance Calculator",
+  "url": "https://loan-calculator-tools.vercel.app/refinance-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "description": "Compare your current mortgage against a refinance, including the break-even point.",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is refinancing worth it?",
+      "acceptedAnswer": {"@type": "Answer", "text": "It's worth it if you stay past the break-even point — the month when your monthly savings cover the closing costs. If you'll move before then, refinancing usually doesn't pay."}
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to break even on a refinance?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Divide your total closing costs by your monthly savings. For example, $5,000 in costs with $150 monthly savings breaks even in about 33 months. This calculator does exactly that for you."}
+    },
+    {
+      "@type": "Question",
+      "name": "When should I refinance?",
+      "acceptedAnswer": {"@type": "Answer", "text": "When rates drop meaningfully below your current rate, when your credit has improved enough to qualify for a better rate, or when you want to switch from an adjustable to a fixed rate. Consider the closing costs."}
+    },
+    {
+      "@type": "Question",
+      "name": "What are refinance closing costs?",
+      "acceptedAnswer": {"@type": "Answer", "text": "They typically include application, appraisal, title, and origination fees, often totaling 2% to 5% of the loan amount. Ask your lender for a full estimate before comparing."}
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#F7F8FB;--card:#ffffff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;
+    --good:#2E9E6B;--good-light:#E8F6EF;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:36px 18px 56px;}
+  header.top{padding:6px 0 22px;}
+  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
+  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
+  h1{font-size:clamp(26px,4.5vw,34px);font-weight:800;letter-spacing:-.5px;line-height:1.25;margin:12px 0 10px;}
+  .sub{font-size:16px;color:var(--muted);max-width:640px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 24px;margin-top:26px;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row .field{flex:1;min-width:170px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .field .hint{font-size:12px;color:var(--muted);font-weight:400;}
+  .input{width:100%;padding:13px 14px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#FDFDFE;outline:none;transition:border-color .15s;}
+  .input:focus{border-color:var(--brand);background:#fff;}
+  .btn{width:100%;padding:15px;font-size:16px;font-weight:700;color:#fff;background:var(--brand);border:none;border-radius:11px;cursor:pointer;margin-top:6px;transition:background .15s;}
+  .btn:hover{background:var(--brand-dark);}
+  .result{margin-top:24px;border-top:1px solid var(--line);padding-top:20px;}
+  .result.hidden{display:none;}
+  .res-main{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .res-box{flex:1;min-width:150px;background:var(--brand-light);border-radius:14px;padding:16px;}
+  .res-box .lbl{font-size:12.5px;color:var(--brand-dark);font-weight:600;}
+  .res-box .val{font-size:clamp(22px,4vw,30px);font-weight:800;color:var(--brand-dark);margin-top:2px;}
+  .res-box.alt{background:var(--good-light);}
+  .res-box.alt .lbl,.res-box.alt .val{color:var(--good);}
+  .interpret{margin-top:16px;background:#FBFAFE;border:1px dashed var(--brand);border-radius:12px;padding:14px 16px;}
+  .interpret.hidden{display:none;}
+  .int-title{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--brand-dark);margin-bottom:6px;}
+  .int-line{font-size:14px;color:#3A4757;line-height:1.7;}
+  .section{margin-top:40px;}
+  .section h2{font-size:21px;font-weight:800;letter-spacing:-.3px;margin-bottom:12px;}
+  .section p{font-size:15px;color:#3A4757;margin-bottom:12px;}
+  .section ul{font-size:15px;color:#3A4757;margin:0 0 12px 20px;}
+  .section li{margin-bottom:8px;}
+  .callout{background:var(--brand-light);border-left:4px solid var(--brand);padding:14px 16px;border-radius:10px;margin:14px 0;}
+  .callout strong{color:var(--brand-dark);}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{padding:15px 18px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q span{color:var(--brand);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 18px 14px;font-size:14px;color:#3A4757;line-height:1.7;}
+  .back{display:inline-block;margin-top:8px;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
+  .related{margin-top:8px;font-size:13px;color:var(--muted);}
+  .related a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .more-tools{margin-top:40px;background:var(--brand-light);border-radius:var(--radius);padding:22px 20px;}
+  .more-tools h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+  .more-tools ul{list-style:none;}
+  .more-tools li{margin-bottom:6px;font-size:14px;}
+  .more-tools a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .disclaimer{font-size:12.5px;color:#8A94A2;margin-top:24px;line-height:1.7;}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);}
+  footer a{color:var(--brand-dark);text-decoration:none;}
+  @media (max-width:520px){.card{padding:20px 16px;}.wrap{padding:24px 14px 44px;}.row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← All loan calculators</a>
+  <header class="top">
+    <div class="brand"><span></span> Loan Calculator Tools</div>
+    <h1>Refinance Calculator</h1>
+    <p class="sub">Lower rate sounds great — but will you stay long enough to cover the costs?</p>
+  </header>
+
+  <div class="related">Related: <a href="what-is-a-good-mortgage-rate.html">What Is a Good Rate</a> · <a href="mortgage-payment-calculator.html">Mortgage Payment</a></div>
+
+  <div class="card">
+    <div class="row">
+      <div class="field">
+        <label for="balance">Current balance <span class="hint">($)</span></label>
+        <input class="input" id="balance" type="number" min="0" value="280000" step="1000">
+      </div>
+      <div class="field">
+        <label for="curRate">Current rate <span class="hint">(%)</span></label>
+        <input class="input" id="curRate" type="number" min="0" value="7.0" step="0.05">
+      </div>
+      <div class="field">
+        <label for="remYears">Remaining term <span class="hint">(years)</span></label>
+        <input class="input" id="remYears" type="number" min="1" max="40" value="25">
+      </div>
+      <div class="field">
+        <label for="newRate">New rate <span class="hint">(%)</span></label>
+        <input class="input" id="newRate" type="number" min="0" value="5.75" step="0.05">
+      </div>
+      <div class="field">
+        <label for="newTerm">New term <span class="hint">(years)</span></label>
+        <input class="input" id="newTerm" type="number" min="1" max="40" value="30">
+      </div>
+      <div class="field">
+        <label for="costs">Closing costs <span class="hint">($)</span></label>
+        <input class="input" id="costs" type="number" min="0" value="5000" step="500">
+      </div>
+    </div>
+    <button class="btn" id="calc">Compare refinance</button>
+
+    <div class="result hidden" id="result">
+      <div class="res-main">
+        <div class="res-box">
+          <div class="lbl">Current payment / mo</div>
+          <div class="val" id="r-cur">—</div>
+        </div>
+        <div class="res-box">
+          <div class="lbl">New payment / mo</div>
+          <div class="val" id="r-new">—</div>
+        </div>
+        <div class="res-box alt">
+          <div class="lbl">Monthly savings</div>
+          <div class="val" id="r-save">—</div>
+        </div>
+        <div class="res-box alt">
+          <div class="lbl">Break-even</div>
+          <div class="val" id="r-break">—</div>
+        </div>
+      </div>
+
+      <div class="interpret hidden" id="interpret">
+        <div class="int-title">Is it worth it?</div>
+        <div class="int-line" id="int-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <h2>How to use this calculator</h2>
+    <ul>
+      <li>Enter your <strong>current balance, current rate, and remaining term</strong>, plus the <strong>new rate, new term, and closing costs</strong>.</li>
+      <li>Tap <strong>Compare refinance</strong> to see your current vs new payment, monthly savings, and the break-even point.</li>
+      <li>The <strong>break-even</strong> is how many months it takes for your savings to pay for the closing costs. Stay past it and refinancing pays off.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>When refinancing makes sense</h2>
+    <div class="callout"><strong>It's a numbers game.</strong> If your new rate is meaningfully lower and you'll stay past the break-even, refinancing saves you money. If you might move sooner, the closing costs may never pay off.</div>
+    <p>Beyond rate drops, people refinance to switch from an adjustable to a fixed rate, or to cash out equity. In each case, run the numbers here first.</p>
+  </section>
+
+  <section class="section">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">Is refinancing worth it?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">It's worth it if you stay past the break-even point — the month when your monthly savings cover the closing costs. If you'll move before then, refinancing usually doesn't pay.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long does it take to break even on a refinance?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Divide your total closing costs by your monthly savings. For example, $5,000 in costs with $150 monthly savings breaks even in about 33 months. This calculator does exactly that for you.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">When should I refinance?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">When rates drop meaningfully below your current rate, when your credit has improved enough to qualify for a better rate, or when you want to switch from an adjustable to a fixed rate. Consider the closing costs.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What are refinance closing costs?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">They typically include application, appraisal, title, and origination fees, often totaling 2% to 5% of the loan amount. Ask your lender for a full estimate before comparing.</div></div>
+    </div>
+  </section>
+
+  <div class="more-tools">
+    <h3>You might also need</h3>
+    <ul>
+      <li><a href="what-is-a-good-mortgage-rate.html">What Is a Good Mortgage Rate</a> — benchmarks for your new rate.</li>
+      <li><a href="mortgage-payment-calculator.html">Mortgage Payment Calculator</a> — payment at any rate.</li>
+      <li><a href="loan-payoff-calculator.html">Payoff Calculator</a> — should you pay extra instead?</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">This calculator provides estimates for general guidance only and is not financial advice. Actual rates, costs, and savings vary by lender and market. Always confirm with your lender.</div>
+
+  <footer><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var result=document.getElementById("result");
+  var interpret=document.getElementById("interpret");
+  var intLine=document.getElementById("int-line");
+  function fmt(n){return "$"+Math.round(n).toLocaleString("en-US");}
+  function pay(amt,rate,termY){
+    var n=termY*12,i=rate/100/12;
+    if(i===0){return amt/n;}
+    return amt*i*Math.pow(1+i,n)/(Math.pow(1+i,n)-1);
+  }
+  function compute(){
+    var bal=parseFloat(document.getElementById("balance").value);
+    var curRate=parseFloat(document.getElementById("curRate").value);
+    var remYears=parseFloat(document.getElementById("remYears").value);
+    var newRate=parseFloat(document.getElementById("newRate").value);
+    var newTerm=parseFloat(document.getElementById("newTerm").value);
+    var costs=parseFloat(document.getElementById("costs").value)||0;
+    if(isNaN(bal)||bal<=0||isNaN(curRate)||curRate<0||isNaN(remYears)||remYears<=0||isNaN(newRate)||newRate<0||isNaN(newTerm)||newTerm<=0){
+      document.getElementById("r-cur").textContent="—";
+      document.getElementById("r-new").textContent="—";
+      document.getElementById("r-save").textContent="—";
+      document.getElementById("r-break").textContent="—";
+      interpret.classList.add("hidden");
+      result.classList.remove("hidden");
+      return;
+    }
+    var curP=pay(bal,curRate,remYears);
+    var newP=pay(bal,newRate,newTerm);
+    var save=curP-newP;
+    var breakMonths=save>0?Math.ceil(costs/save):-1;
+    document.getElementById("r-cur").textContent=fmt(curP);
+    document.getElementById("r-new").textContent=fmt(newP);
+    document.getElementById("r-save").textContent=save>=0?fmt(save):"n/a";
+    document.getElementById("r-break").textContent=breakMonths>=0?Math.ceil(breakMonths/12)+" yrs / "+breakMonths+" mo":"n/a";
+    result.classList.remove("hidden");
+    var msg;
+    if(save<=0){
+      msg="Your new payment is not lower than your current one, so this refinance won't save you monthly. Check whether you're comparing the same term, and get fresh quotes — a rate drop alone isn't enough.";
+    } else if(breakMonths>120){
+      msg="Your monthly savings of "+fmt(save)+" are modest, and it takes about "+breakMonths+" months ("+Math.ceil(breakMonths/12)+" years) to break even. Unless you plan to stay well past that, the closing costs likely won't pay off.";
+    } else if(breakMonths>60){
+      msg="You break even in about "+breakMonths+" months ("+Math.ceil(breakMonths/12)+" years). That's a reasonable payoff window — refinancing starts saving money after that point.";
+    } else {
+      msg="You break even in about "+breakMonths+" months and start saving "+fmt(save)+" a month after that. If you'll stay past the break-even, this refinance looks worthwhile.";
+    }
+    intLine.textContent=msg;
+    interpret.classList.remove("hidden");
+  }
+  document.getElementById("calc").addEventListener("click",compute);
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling;
+      if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';}
+      else{a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+  compute();
+})();
+</script>
+</body>
+</html>

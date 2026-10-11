@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage Payment Calculator — Monthly Payment &amp; Total Interest</title>
+<meta name="description" content="Free mortgage calculator: enter loan amount, interest rate and term to see your monthly payment, total interest and full repayment schedule. Works for any loan.">
+<link rel="canonical" href="https://loan-calculator-tools.vercel.app/mortgage-payment-calculator.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%A0%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mortgage Payment Calculator",
+  "url": "https://loan-calculator-tools.vercel.app/mortgage-payment-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "description": "Calculate your monthly mortgage payment, total interest, and full repayment schedule.",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is my monthly mortgage payment calculated?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Your monthly payment is calculated from the loan amount, annual interest rate, and loan term. The formula divides the annual rate by 12 for a monthly rate, then spreads the principal and interest across the number of payments."}
+    },
+    {
+      "@type": "Question",
+      "name": "What does my monthly payment include?",
+      "acceptedAnswer": {"@type": "Answer", "text": "This calculator shows just the principal and interest. Your real monthly payment often also includes property taxes, homeowners insurance, and sometimes PMI or HOA fees."}
+    },
+    {
+      "@type": "Question",
+      "name": "How much interest will I pay over the life of the loan?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Over a full 30-year term, interest can easily equal or exceed the amount you borrowed. Use the total interest figure here to see it, then try a shorter term to see how much you save."}
+    },
+    {
+      "@type": "Question",
+      "name": "Should I choose a 15-year or 30-year mortgage?",
+      "acceptedAnswer": {"@type": "Answer", "text": "A 15-year loan has a higher monthly payment but far less total interest. A 30-year loan has a lower monthly payment but much more interest over time. Compare both here before you choose."}
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --bg:#F7F8FB;--card:#ffffff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;
+    --good:#2E9E6B;--good-light:#E8F6EF;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:36px 18px 56px;}
+  header.top{padding:6px 0 22px;}
+  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
+  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
+  h1{font-size:clamp(26px,4.5vw,34px);font-weight:800;letter-spacing:-.5px;line-height:1.25;margin:12px 0 10px;}
+  .sub{font-size:16px;color:var(--muted);max-width:640px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 24px;margin-top:26px;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row .field{flex:1;min-width:180px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .field .hint{font-size:12px;color:var(--muted);font-weight:400;}
+  .input{width:100%;padding:13px 14px;font-size:16px;border:1px solid var(--line);border-radius:10px;background:#FDFDFE;outline:none;transition:border-color .15s;}
+  .input:focus{border-color:var(--brand);background:#fff;}
+  .btn{width:100%;padding:15px;font-size:16px;font-weight:700;color:#fff;background:var(--brand);border:none;border-radius:11px;cursor:pointer;margin-top:6px;transition:background .15s;}
+  .btn:hover{background:var(--brand-dark);}
+  .result{margin-top:24px;border-top:1px solid var(--line);padding-top:20px;}
+  .result.hidden{display:none;}
+  .res-main{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .res-box{flex:1;min-width:150px;background:var(--brand-light);border-radius:14px;padding:16px;}
+  .res-box .lbl{font-size:12.5px;color:var(--brand-dark);font-weight:600;}
+  .res-box .val{font-size:clamp(24px,4.5vw,32px);font-weight:800;color:var(--brand-dark);margin-top:2px;}
+  .res-box.alt{background:var(--good-light);}
+  .res-box.alt .lbl,.res-box.alt .val{color:var(--good);}
+  .interpret{margin-top:16px;background:#FBFAFE;border:1px dashed var(--brand);border-radius:12px;padding:14px 16px;}
+  .interpret.hidden{display:none;}
+  .int-title{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--brand-dark);margin-bottom:6px;}
+  .int-line{font-size:14px;color:#3A4757;line-height:1.7;}
+  .section{margin-top:40px;}
+  .section h2{font-size:21px;font-weight:800;letter-spacing:-.3px;margin-bottom:12px;}
+  .section p{font-size:15px;color:#3A4757;margin-bottom:12px;}
+  .section ul{font-size:15px;color:#3A4757;margin:0 0 12px 20px;}
+  .section li{margin-bottom:8px;}
+  .callout{background:var(--brand-light);border-left:4px solid var(--brand);padding:14px 16px;border-radius:10px;margin:14px 0;}
+  .callout strong{color:var(--brand-dark);}
+  .faq-item{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+  .faq-q{padding:15px 18px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q span{color:var(--brand);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a-inner{padding:0 18px 14px;font-size:14px;color:#3A4757;line-height:1.7;}
+  .back{display:inline-block;margin-top:8px;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
+  .related{margin-top:8px;font-size:13px;color:var(--muted);}
+  .related a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .more-tools{margin-top:40px;background:var(--brand-light);border-radius:var(--radius);padding:22px 20px;}
+  .more-tools h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+  .more-tools ul{list-style:none;}
+  .more-tools li{margin-bottom:6px;font-size:14px;}
+  .more-tools a{color:var(--brand-dark);text-decoration:none;font-weight:600;}
+  .amort{display:none;margin-top:24px;border-top:1px solid var(--line);padding-top:20px;}
+  .amort.show{display:block;}
+  .amort h3{font-size:17px;font-weight:700;margin-bottom:4px;}
+  .amort .lead{font-size:13px;color:var(--muted);margin-bottom:14px;}
+  .amort .legend{display:flex;gap:20px;font-size:12.5px;color:var(--muted);margin-bottom:12px;}
+  .amort .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-2px;}
+  .amort .chart-wrap{width:100%;overflow-x:auto;margin-bottom:18px;}
+  .amort svg{display:block;min-width:560px;width:100%;height:auto;}
+  .amort .scroll{max-height:320px;overflow-y:auto;border:1px solid var(--line);border-radius:10px;}
+  .amort table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .amort th,.amort td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:right;white-space:nowrap;}
+  .amort th{background:var(--brand-light);color:var(--brand-dark);font-weight:700;}
+  .amort th:first-child,.amort td:first-child{text-align:left;}
+  .amort tr:nth-child(even) td{background:#FDFDFE;}
+  .disclaimer{font-size:12.5px;color:#8A94A2;margin-top:24px;line-height:1.7;}
+  footer{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--muted);}
+  footer a{color:var(--brand-dark);text-decoration:none;}
+  @media (max-width:520px){.card{padding:20px 16px;}.wrap{padding:24px 14px 44px;}.row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← All loan calculators</a>
+  <header class="top">
+    <div class="brand"><span></span> Loan Calculator Tools</div>
+    <h1>Mortgage Payment Calculator</h1>
+    <p class="sub">See your monthly payment, total interest, and what the loan really costs before you commit.</p>
+  </header>
+
+  <div class="related">Related: <a href="loan-affordability-calculator.html">How Much Can I Borrow</a> · <a href="loan-interest-calculator.html">Interest Calculator</a></div>
+
+  <div class="card">
+    <div class="row">
+      <div class="field">
+        <label for="amount">Loan amount <span class="hint">($)</span></label>
+        <input class="input" id="amount" type="number" min="0" value="300000" step="1000">
+      </div>
+      <div class="field">
+        <label for="rate">Annual interest rate <span class="hint">(%)</span></label>
+        <input class="input" id="rate" type="number" min="0" value="6.5" step="0.05">
+      </div>
+      <div class="field">
+        <label for="term">Loan term <span class="hint">(years)</span></label>
+        <input class="input" id="term" type="number" min="1" max="40" value="30">
+      </div>
+    </div>
+    <button class="btn" id="calc">Calculate payment</button>
+
+    <div class="result hidden" id="result">
+      <div class="res-main">
+        <div class="res-box">
+          <div class="lbl">Monthly payment</div>
+          <div class="val" id="r-month">—</div>
+        </div>
+        <div class="res-box alt">
+          <div class="lbl">Total interest</div>
+          <div class="val" id="r-interest">—</div>
+        </div>
+        <div class="res-box">
+          <div class="lbl">Total paid</div>
+          <div class="val" id="r-total">—</div>
+        </div>
+      </div>
+
+      <div class="interpret hidden" id="interpret">
+        <div class="int-title">What this means</div>
+        <div class="int-line" id="int-line"></div>
+      </div>
+    </div>
+
+    <div class="amort" id="amort">
+      <h3>Amortization Schedule</h3>
+      <p class="lead">See how much of each year's payment goes to interest vs principal, and watch your balance shrink.</p>
+      <div class="legend">
+        <span><i style="background:#2F6FED;"></i>Principal</span>
+        <span><i style="background:#BFD4FB;"></i>Interest</span>
+      </div>
+      <div class="chart-wrap" id="chartWrap"></div>
+      <div class="scroll">
+        <table id="amortTable">
+          <thead><tr><th>Year</th><th>Total paid</th><th>Principal</th><th>Interest</th><th>End balance</th></tr></thead>
+          <tbody id="amortBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <h2>How to use this calculator</h2>
+    <ul>
+      <li>Enter the <strong>loan amount</strong> you plan to borrow, the <strong>annual interest rate</strong>, and the <strong>term in years</strong>.</li>
+      <li>Tap <strong>Calculate payment</strong> to see your monthly payment, total interest, and total amount paid over the loan.</li>
+      <li>Try a <strong>shorter term</strong> (like 15 years) to see how much interest you save versus a 30-year loan.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>What's included in your payment</h2>
+    <div class="callout"><strong>This shows principal and interest only.</strong> Your real monthly cost often also includes property taxes, homeowners insurance, and possibly PMI or HOA fees — ask your lender for the full escrow amount.</div>
+    <p>The formula used here is the standard amortization formula: your monthly rate is the annual rate divided by 12, and the payment is spread across the full number of payments so that the loan is fully paid off at the end of the term.</p>
+  </section>
+
+  <section class="section">
+    <h2>Common questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">How is my monthly mortgage payment calculated?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Your monthly payment is calculated from the loan amount, annual interest rate, and loan term. The annual rate is divided by 12 for a monthly rate, then principal and interest are spread across the number of payments.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What does my monthly payment include?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">This calculator shows just principal and interest. Your real payment often also includes property taxes, homeowners insurance, and sometimes PMI or HOA fees.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How much interest will I pay over the life of the loan?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">Over a full 30-year term, interest can easily equal or exceed the amount you borrowed. Use the total interest figure here to see it, then try a shorter term to see how much you save.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Should I choose a 15-year or 30-year mortgage?<span>▾</span></div>
+      <div class="faq-a"><div class="faq-a-inner">A 15-year loan has a higher monthly payment but far less total interest. A 30-year loan has a lower monthly payment but much more interest over time. Compare both here before you choose.</div></div>
+    </div>
+  </section>
+
+  <div class="more-tools">
+    <h3>You might also need</h3>
+    <ul>
+      <li><a href="loan-affordability-calculator.html">How Much Can I Borrow</a> — work backward from a monthly payment.</li>
+      <li><a href="loan-interest-calculator.html">Loan Interest Calculator</a> — total interest on any loan.</li>
+      <li><a href="mortgage-vs-rent-calculator.html">Mortgage vs Rent</a> — is buying worth it?</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">This calculator provides estimates for general guidance only and is not financial advice. Actual rates and payments depend on your lender, credit, and local taxes. Always confirm with a qualified professional.</div>
+
+  <footer><p><a href="about.html">About</a> · <a href="privacy.html">Privacy</a></p></footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var result=document.getElementById("result");
+  var interpret=document.getElementById("interpret");
+  var intLine=document.getElementById("int-line");
+  function fmt(n){return "$"+Math.round(n).toLocaleString("en-US");}
+  function compute(){
+    var amt=parseFloat(document.getElementById("amount").value);
+    var rate=parseFloat(document.getElementById("rate").value);
+    var term=parseFloat(document.getElementById("term").value);
+    if(isNaN(amt)||amt<=0||isNaN(rate)||rate<0||isNaN(term)||term<=0){
+      document.getElementById("r-month").textContent="—";
+      document.getElementById("r-interest").textContent="—";
+      document.getElementById("r-total").textContent="—";
+      interpret.classList.add("hidden");
+      result.classList.remove("hidden");
+      return;
+    }
+    var n=term*12;
+    var i=rate/100/12;
+    var monthly;
+    if(i===0){monthly=amt/n;}
+    else{monthly=amt*i*Math.pow(1+i,n)/(Math.pow(1+i,n)-1);}
+    var total=monthly*n;
+    var interest=total-amt;
+    document.getElementById("r-month").textContent=fmt(monthly);
+    document.getElementById("r-interest").textContent=fmt(interest);
+    document.getElementById("r-total").textContent=fmt(total);
+    result.classList.remove("hidden");
+    var pct=amt>0?Math.round(interest/amt*100):0;
+    var msg="Over "+Math.round(term)+" years you'll pay "+fmt(interest)+" in interest — about "+pct+"% of the amount you borrowed. ";
+    if(term>=30){
+      msg+="On a 30-year loan, interest often rivals the loan amount itself. A 15-year term raises the monthly payment but can cut total interest dramatically.";
+    } else {
+      msg+="This shorter term keeps interest relatively low. Just make sure the higher payment still fits your budget.";
+    }
+    intLine.textContent=msg;
+    interpret.classList.remove("hidden");
+    renderAmort(amt,i,n,monthly);
+  }
+  function fmtCompact(n){return Math.round(n).toLocaleString("en-US");}
+  function renderAmort(amt,i,n,monthly){
+    var yearly=[];
+    var bal=amt;
+    for(var m=1;m<=n;m++){
+      var intPart=bal*i;
+      if(intPart>bal){intPart=bal;}
+      var prin=monthly-intPart;
+      if(prin<0)prin=0;
+      var yr=Math.ceil(m/12);
+      if(!yearly[yr])yearly[yr]={prin:0,int:0,bal:0};
+      yearly[yr].prin+=prin;
+      yearly[yr].int+=intPart;
+      bal-=prin;
+      if(bal<=0)bal=0;
+      yearly[yr].bal=bal;
+    }
+    // chart
+    var maxY=0;
+    yearly.forEach(function(y){if(y){var t=y.prin+y.int;if(t>maxY)maxY=t;}});
+    var W=560,H=200,padB=24,padT=8;
+    var nBars=yearly.length-1||1;
+    var slot=W/nBars;
+    var barW=slot*0.62;
+    var svg='<svg viewBox="0 0 '+W+' '+(H+padB)+'" role="img" aria-label="Principal vs interest by year">';
+    for(var y=1;y<=nBars;y++){
+      if(!yearly[y])continue;
+      var hPrin=yearly[y].prin/maxY*(H-padT);
+      var hInt=yearly[y].int/maxY*(H-padT);
+      var x=(y-1)*slot+slot/2-barW/2;
+      svg+='<rect x="'+x.toFixed(1)+'" y="'+(H-hPrin).toFixed(1)+'" width="'+barW.toFixed(1)+'" height="'+hPrin.toFixed(1)+'" fill="#2F6FED" rx="1.5"/>';
+      svg+='<rect x="'+x.toFixed(1)+'" y="'+(H-hPrin-hInt).toFixed(1)+'" width="'+barW.toFixed(1)+'" height="'+hInt.toFixed(1)+'" fill="#BFD4FB" rx="1.5"/>';
+      if(nBars<=30){
+        svg+='<text x="'+(x+barW/2).toFixed(1)+'" y="'+(H+16)+'" text-anchor="middle" font-size="9" fill="#6B7684">'+(yearly[y].bal<=0?'' : (y%5===0?y:'·'))+'</text>';
+      }
+    }
+    svg+='</svg>';
+    document.getElementById("chartWrap").innerHTML=svg;
+    // table
+    var rows='';
+    for(var y2=1;y2<=nBars;y2++){
+      if(!yearly[y2])continue;
+      rows+='<tr><td>Year '+(y2)+'</td><td>$'+fmtCompact(yearly[y2].prin+yearly[y2].int)+'</td><td>$'+fmtCompact(yearly[y2].prin)+'</td><td>$'+fmtCompact(yearly[y2].int)+'</td><td>$'+fmtCompact(yearly[y2].bal)+'</td></tr>';
+    }
+    document.getElementById("amortBody").innerHTML=rows;
+    var am=document.getElementById("amort");
+    am.classList.add("show");
+  }
+  document.getElementById("calc").addEventListener("click",compute);
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var a=q.nextElementSibling;
+      if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';}
+      else{a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+  compute();
+})();
+</script>
+</body>
+</html>
