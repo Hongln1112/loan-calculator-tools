@@ -3,110 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Loan Calculator Tools</title>
-<meta name="description" content="About Loan Calculator Tools — free, private, browser-based loan and mortgage calculators.">
+<title>About Us | Loan Calculator Tools</title>
+<meta name="description" content="About Loan Calculator Tools — free, browser-based loan and mortgage calculators with clear guides.">
 <link rel="canonical" href="https://loan-calculator-tools.vercel.app/about.html">
 <link rel="icon" type="image/png" href="favicon.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "About Loan Calculator Tools",
-  "url": "https://loan-calculator-tools.vercel.app/about.html",
-  "publisher": {"@type": "Organization", "name": "Loan Calculator Tools"}
-}
-</script>
 <style>
-  :root{--bg:#F7F8FB;--card:#fff;--ink:#1E2733;--muted:#6B7684;--brand:#2F6FED;--brand-dark:#1F56C8;--brand-light:#EAF1FE;--line:#E7EBF2;--radius:18px;--shadow:0 8px 26px rgba(30,50,90,.08);}
+  :root{
+    --bg:#faf5ff;--card:#ffffff;--ink:#1e1b4b;--muted:#6b7280;
+    --brand:#9333ea;--brand-dark:#7e22ce;--brand-light:#f3e8ff;
+    --line:#e9d5ff;--navy:#2e1065;
+    --radius:14px;--shadow:0 1px 3px rgba(46,16,101,.04),0 8px 24px rgba(46,16,101,.06);
+  }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:680px;margin:0 auto;padding:36px 18px 56px;}
-  header.top .brand{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);}
-  header.top .brand span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--brand);}
-  h1{font-size:clamp(26px,4.5vw,34px);font-weight:800;margin:12px 0 8px;}
-  .back{display:inline-block;font-size:13px;font-weight:600;color:var(--brand-dark);text-decoration:none;}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin-top:22px;}
-  .card h2{font-size:19px;font-weight:800;margin-bottom:10px;}
-  .card p{font-size:15px;color:#3A4757;margin-bottom:12px;}
-  .card ul{font-size:15px;color:#3A4757;margin-left:20px;}
-  .card li{margin-bottom:8px;}
-  footer{margin-top:30px;text-align:center;font-size:13px;color:var(--muted);}
-  footer a{color:var(--brand-dark);text-decoration:none;}
+  nav{background:var(--navy);position:sticky;top:0;z-index:100;}
+  .nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+  .nav-brand{color:#fff;font-weight:700;font-size:15px;letter-spacing:-.2px;text-decoration:none;display:flex;align-items:center;gap:8px;}
+  .nav-brand svg{width:22px;height:22px;}
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{color:#94a3b8;text-decoration:none;font-size:14px;font-weight:500;transition:color .15s;}
+  .nav-links a:hover{color:#fff;}
+  .wrap{max-width:800px;margin:0 auto;padding:40px 24px 64px;}
+  h1{font-size:clamp(26px,4vw,34px);font-weight:800;letter-spacing:-.5px;margin-bottom:12px;}
+  .lead{font-size:16px;color:var(--muted);margin-bottom:32px;max-width:640px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:20px;}
+  .card h2{font-size:18px;font-weight:700;margin-bottom:12px;}
+  .card p{font-size:15px;color:#33455a;margin-bottom:12px;}
+  .card ul{font-size:15px;color:#33455a;margin-left:20px;margin-bottom:12px;}
+  .card li{margin-bottom:6px;}
+  a{color:var(--brand);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;}
+  footer .foot-links{margin-bottom:8px;}
+  footer .foot-links a{color:var(--muted);text-decoration:none;font-size:13px;margin:0 12px;}
+  footer .copyright{font-size:12px;color:var(--muted);}
+  @media (max-width:640px){.nav-links{display:none;}.wrap{padding:24px 16px 40px;}}
 </style>
 </head>
 <body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+      Loan Calculator Tools
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Calculators</a>
+      <a href="buying-a-house-guide.html">Buying a House</a>
+      <a href="guides.html">Guides</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+</nav>
+
 <div class="wrap">
-  <a class="back" href="index.html">← All calculators</a>
-  <header class="top">
-    <div class="brand"><span></span> Loan Calculator Tools</div>
-    <h1>About Loan Calculator Tools</h1>
-  </header>
+
+  <h1>About Loan Calculator Tools</h1>
+  <p class="lead">We build free, browser-based calculators and clear guides to help you understand your borrowing numbers before you sign anything.</p>
 
   <div class="card">
     <h2>What we do</h2>
-    <p>Loan Calculator Tools is a free collection of loan and mortgage calculators plus practical guides. Our goal is simple: help you understand your borrowing numbers before you sign anything.</p>
+    <p>Loan Calculator Tools is a collection of free loan and mortgage calculators plus practical guides. Our goal is simple: help you see the real cost of borrowing, so you can make decisions with confidence.</p>
     <ul>
       <li>Calculate monthly payments, total interest, and full loan cost.</li>
-      <li>See how much you can borrow from a payment that fits your budget.</li>
+      <li>Work backward from a budget to see how much you can borrow.</li>
       <li>Compare buying vs renting, and fixed vs adjustable mortgages.</li>
-      <li>Understand rates, down payments, and whether prepaying is worth it.</li>
+      <li>See how extra payments or refinancing can save you interest over time.</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>Who we are</h2>
-    <p>We're a small team of finance enthusiasts who got tired of how complicated loan websites make simple math. Every mortgage, auto loan, and personal loan uses the same basic formula — lenders just wrap it in jargon and sales funnels. Our goal is to strip that away and show you the numbers clearly.</p>
-    <p>We don't work for any bank, broker, or lender. We don't get paid to recommend specific loans. We build calculators because understanding your own numbers is the first step to making good financial decisions.</p>
+    <h2>How it works</h2>
+    <p>Every calculator runs entirely in your browser. The numbers you enter never leave your device — we don't store them, transmit them, or ask you to create an account. Just enter your numbers, see the result, and go.</p>
   </div>
 
   <div class="card">
-    <h2>Contact</h2>
-    <p>Have a question, found a bug, or want to suggest a calculator? We'd love to hear from you. Email us at <a href="mailto:hongln19951112@gmail.com">hongln19951112@gmail.com</a> and we'll get back to you as soon as we can.</p>
+    <h2>Why we built this</h2>
+    <p>Borrowing money is one of the biggest financial decisions most people make. Yet the math behind mortgages, car loans, and personal loans is often hidden behind fine print and lender jargon. We believe the numbers should be easy to see, easy to understand, and available to everyone for free.</p>
   </div>
 
   <div class="card">
-    <h2>Our approach</h2>
-    <p>Everything on this site is <strong>free</strong> and runs <strong>entirely in your browser</strong>. We don't collect your financial details, we don't require sign-up, and we don't sell data. The calculators use standard financial formulas to give you accurate estimates.</p>
+    <h2>Important disclaimer</h2>
+    <p>All calculators on this site provide estimates for general guidance only and are not financial advice. Loan terms, rates, and fees vary by lender. Always confirm details with a qualified mortgage professional or financial advisor before making borrowing decisions.</p>
   </div>
 
   <div class="card">
-    <h2>How our numbers are calculated</h2>
-    <p>Every calculator on this site uses the standard amortization formula that lenders themselves use, based on widely accepted financial practice:</p>
-    <ul>
-      <li><strong>Monthly payments</strong> — computed from the loan amount, annual interest rate, and term, using the equal-amortization payment formula (principal + interest spread evenly across the term).</li>
-      <li><strong>Affordability</strong> — works backward from a monthly payment you choose to the loan amount it supports, using the present-value formula.</li>
-      <li><strong>Total interest &amp; total paid</strong> — derived directly from those payment figures over the full term.</li>
-      <li><strong>Guidelines</strong> — affordability and down-payment guidance reference common lending standards such as the 28/36 debt-to-income guideline, which is a widely used benchmark in U.S. mortgage lending.</li>
-    </ul>
-    <p>We aim to keep figures transparent and consistent so you can reproduce any result yourself.</p>
+    <h2>Get in touch</h2>
+    <p>Have a question, found a bug, or have an idea for a new calculator? <a href="contact.html">Contact us</a> — we'd love to hear from you.</p>
   </div>
 
-  <div class="card">
-    <h2>Editorial &amp; update process</h2>
-    <p>We take accuracy seriously, especially on a site about money. Our process is simple but deliberate:</p>
-    <ul>
-      <li>Guides are written to reflect common U.S. lending practices and consumer guidance (for example, concepts promoted by agencies like the CFPB and HUD), and are reviewed before publishing.</li>
-      <li>We refresh guides and calculators on an ongoing basis as market conditions and practices change.</li>
-      <li>Where numbers depend on your individual situation — your credit, your lender, your local market — we say so clearly and steer you to confirm the details with a qualified professional.</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>Why we can be trusted</h2>
-    <ul>
-      <li><strong>Free, private, transparent.</strong> No sign-up, no data collection, no hidden fees — just the math, shown clearly.</li>
-      <li><strong>No sales agenda.</strong> We don't push any lender, product, or broker. The calculators are genuinely neutral.</li>
-      <li><strong>Clear boundaries.</strong> We always label estimates as estimates, and we're explicit about what's general education vs personal financial advice.</li>
-      <li><strong>Plain-language honesty.</strong> If something depends on your lender or market, we tell you instead of pretending one number fits everyone.</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>A note on accuracy</h2>
-    <p>Our calculators provide estimates using standard formulas. Real loan terms depend on your lender, credit, fees, and local market. Please treat these numbers as guidance and confirm with a qualified professional before making a financial decision.</p>
-  </div>
-
-  <footer><p><a href="privacy.html">Privacy</a> · <a href="index.html">Home</a></p></footer>
 </div>
+
+<footer>
+  <div class="foot-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="copyright">© 2026 Loan Calculator Tools</div>
+</footer>
+
 </body>
 </html>
